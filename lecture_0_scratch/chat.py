@@ -1,3 +1,5 @@
+########## CHAT ##########
+# Example 1
 from openai import OpenAI
 
 client = OpenAI()
