@@ -53,14 +53,15 @@ int main(void) {
 }
 */
 
-void meow(void);
+void meow(int times);
 
 int main(void) {
-    for (int i = 0; i < 3; i++) {
-        meow();
-    }
+    int n = get_int("What's n? ");
+    meow(n);
 }
 
-void meow(void) {
+void meow(int times) {
+    for (int i = 0; i < times; i++) {
     printf("Meow\n");
+    }
 }
