@@ -24,7 +24,7 @@ int rows;
 do {
 rows = get_int("Height: ");
 }
-while(rows < 0);
+while(rows < 1);
 // Return valid number of rows
 return rows;
 }

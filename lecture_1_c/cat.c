@@ -71,7 +71,7 @@ void meow(int times);
 
 int main(void) {
     int n = get_n();
-    meow(n) ;
+    meow(n);
 }
 
 int get_n(void) {
