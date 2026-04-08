@@ -1,4 +1,4 @@
-// ########## Problemset 1 - Mario (less) ########## //
+// ########## Problemset 1 - Mario (more) ########## //
 #include <cs50.h>
 #include <stdio.h>
 
