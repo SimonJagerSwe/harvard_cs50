@@ -33,13 +33,22 @@ return rows;
 // Print pyramid
 void print_rows(int rows) {
     int space = (rows - 1);
+    int block = 1;
     char hash = '#';
     char blank = ' ';
+    // Print row
     for (int i = 0; i < rows; ++i) {
+        // Print spaces for each row
+        for (int i = 0; i < space; i++) {
+            putchar(blank);
+        }
+        // Print hashes for each row
+        for (int i = 0; i < block; i++) {
         putchar(hash);
-        putchar(blank);
-        putchar(hash);
+        }
+        // Break line, decrease blank spaces for each row, increase number of hashes for each row
         putchar('\n');
-    // --space;
+        --space;
+        ++block;
     }
 }
