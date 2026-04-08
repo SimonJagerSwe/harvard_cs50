@@ -37,7 +37,7 @@ int main(void){
             }
             else
             {
-                // printf("Remaining change after quarters: %i\n", change);
+                printf("Remaining change after quarters: %i\n", change);
             }
 
             if (change >= dime)
@@ -54,7 +54,7 @@ int main(void){
             }
             else
             {
-                // printf("Remaining change after quarters and dimes: %i\n", change);
+                printf("Remaining change after quarters and dimes: %i\n", change);
             }
 
             if (change >= nickle)
@@ -71,7 +71,7 @@ int main(void){
             }
             else
             {
-                // printf("Remaining change after quarters, dimes and nickles: %i\n", change);
+                printf("Remaining change after quarters, dimes and nickles: %i\n", change);
             }
 
             if (change >= penny)
