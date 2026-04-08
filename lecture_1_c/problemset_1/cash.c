@@ -5,7 +5,7 @@
 
 // Functions & variables
 int get_change(void);
-void check_change(int change);
+int check_change(int change);
 // int deduct_quarter(int change);
 // int deduct_dime(int change);
 int quarter = 25;
@@ -21,6 +21,40 @@ int main(void)
     int change = get_change();
     // printf("Change: %i\n", change);
     check_change(change);
+    do
+    {
+        if (change >= quarter)
+        {
+        do
+            {
+                coins += 1;
+                change -= quarter;
+                printf("Deducting a quarter from the change\n");
+                printf("Current change: %i\n", change);
+                printf("Number of coins used: %i\n", coins);
+            } while ((change - quarter) >= 0);
+        }
+        else
+        {
+        printf("Remaining change after quarters: %i\n", change);
+        // break;
+        }
+
+        if (change >= dime)
+        {
+            coins += 1;
+            change -= dime;
+            printf("Deducting a dime from the change\n");
+            printf("Current change: %i\n", change);
+            printf("Number of coins used: %i\n", coins);
+        }
+        else
+        {
+            printf("Remaining change after quarters and dimes: %i\n", change);
+        }
+    }
+    while (change > 0);
+    printf("Number of coins used: %i\n", coins);
 }
 
 
@@ -37,14 +71,18 @@ while(change < 1);
 return change;
 }
 
-void check_change(int change)
+// Check current change
+int check_change(int change)
 {
     printf("Current change: %i\n", change);
+    return change;
 }
-    
+
+
+
 /*
 // Check change
-void check_coin(int change) 
+void check_change(int change) 
 {   // Check if it's possible to give quarter(s) as change
     do
     {
