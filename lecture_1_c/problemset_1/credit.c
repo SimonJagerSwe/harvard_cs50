@@ -8,6 +8,7 @@ int getInput(void);
 
 
 // Variables
+int cardNumber[];
 int amexLength = 15;
 int mastercardLength = 16;
 int visaLength[] = {13, 16};
@@ -29,12 +30,9 @@ int getInput(void)
 {
     do
     {
-        int cardNumber = get_long("Number: ");
-        printf("Card number: %i\n", cardNumber);
-        int cardArr[] = {};
-        int digit = cardNumber%10;
-        printf("%i\n", digit);
-        return cardNumber;
+        int cardInput = get_long("Number: ");
+        printf("Card number: %i\n", cardInput);
+        return cardInput;
     }
     while (true);
     // return cardNumber;
