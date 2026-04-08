@@ -39,11 +39,11 @@ void print_rows(int rows) {
     // Print row
     for (int i = 0; i < rows; ++i) {
         // Print spaces for each row
-        for (int i = 0; i < space; i++) {
+        for (int j = 0; j < space; j++) {
             putchar(blank);
         }
         // Print hashes for each row
-        for (int i = 0; i < block; i++) {
+        for (int k = 0; k < block; k++) {
         putchar(hash);
         }
         // Break line, decrease blank spaces for each row, increase number of hashes for each row
