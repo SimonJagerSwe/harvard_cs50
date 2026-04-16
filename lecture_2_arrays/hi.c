@@ -19,6 +19,7 @@
 //     printf("%i %i %i \n", s[0], s[1], s[2]);
 //     printf("%i %i %i %i\n", s[0], s[1], s[2], s[3]);
 // }
+
 int main(void)
 {
     string s = "HI!";
