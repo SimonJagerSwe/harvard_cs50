@@ -53,15 +53,7 @@
 //     printf("Average: %f\n", (scores[0] + scores[1] + scores[2]) / 3.0);
 // }
 
-float average(int length, int numbers[])
-{
-    int sum = 0;
-    for (int i = 0; i < length; i++)
-    {
-        sum += numbers[i];
-    }
-    return sum / (float) length;
-}
+float average(int length, int numbers[]);
 
 int main(void)
 {
@@ -73,4 +65,15 @@ int main(void)
     }
 
     printf("Average: %f\n", average(N, scores));
+}
+
+
+float average(int length, int numbers[])
+{
+    int sum = 0;
+    for (int i = 0; i < length; i++)
+    {
+        sum += numbers[i];
+    }
+    return sum / (float) length;
 }
