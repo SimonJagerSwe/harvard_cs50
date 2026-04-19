@@ -1,15 +1,17 @@
 // ########## Problemset 1 - Credit ########## //
 #include<cs50.h>
 #include<stdio.h>
+#include<string.h>
 
 
 // Functions
 int getInput(void);
-int identifyCard(int card);
+int identifyCard(string cardString);
 
 
 // Variables
 int cardNumber[16];
+char cardString[16];
 int amexLength = 15;
 int mastercardLength = 16;
 int visaLength[] = {13, 16};
@@ -23,8 +25,8 @@ int oddPlaces[8];
 int main(void) 
 {
     int card = getInput();
-    // printf("Card number: %i\n", card);
-    int cardStatus = identifyCard(card);
+    sprintf(cardString, "%d\n", card);
+    int cardStatus = identifyCard(cardString);
 }
 
 // User input validation
@@ -35,9 +37,9 @@ int getInput(void)
 }
 
 // Identify card type
-int identifyCard(int card)
+int identifyCard(string cardString)
 {
-    printf("Card number: %i\n", card);
+    printf("Card number: %s\n", cardString);
     return 0;
 }
 
