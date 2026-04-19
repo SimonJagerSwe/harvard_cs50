@@ -5,10 +5,11 @@
 
 // Functions
 int getInput(void);
+int identifyCard(int card);
 
 
 // Variables
-int cardNumber[];
+int cardNumber[16];
 int amexLength = 15;
 int mastercardLength = 16;
 int visaLength[] = {13, 16};
@@ -22,22 +23,23 @@ int oddPlaces[8];
 int main(void) 
 {
     int card = getInput();
-    //printf("%i\n", card);
+    // printf("Card number: %i\n", card);
+    int cardStatus = identifyCard(card);
 }
 
 // User input validation
 int getInput(void)
 {
-    do
-    {
-        int cardInput = get_long("Number: ");
-        printf("Card number: %i\n", cardInput);
-        return cardInput;
-    }
-    while (true);
-    // return cardNumber;
+    int cardInput = get_long("Number: ");  
+    return cardInput;
 }
+
 // Identify card type
+int identifyCard(int card)
+{
+    printf("Card number: %i\n", card);
+    return 0;
+}
 
 // Create lists of every odd/even digit placements
 
