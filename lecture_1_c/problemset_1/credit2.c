@@ -3,11 +3,13 @@
 #include<stdio.h>
 #include<string.h>
 
-long card[16];
-string cardString[16];
+long card;
+char cardString[16];
 
 int main(void)
 {
     long card = get_long("Number: ");
     printf("Card as long: %ld\n", card);
+    sprintf(cardString, "%ld\n", card);
+    printf("Card as string: %s", cardString);
 }
