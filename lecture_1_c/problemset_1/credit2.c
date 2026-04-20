@@ -68,7 +68,6 @@ int main(void)
     // If the card
     else
     {
-        printf("Invalid\n");
+        printf("INVALID\n");
     }
-    
 }
