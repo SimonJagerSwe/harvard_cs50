@@ -29,6 +29,7 @@ int main(void)
     
 
     // Compare lengths to card suppliers
+    // Check if length is correct for MasterCard or Visa
     if (length == 16)
     {
         printf("MasterCard or Visa\n");
@@ -39,7 +40,7 @@ int main(void)
             printf("MasterCard\n");
         }
 
-        // Check first number sto see if it is a Visa card
+        // Check first number to see if it is a Visa card
         else if (card1 == '4')
         {
             printf("Visa\n");
@@ -52,7 +53,7 @@ int main(void)
         } 
     }
 
-    else if (length == 15)
+    else if (length == 15 && (card1 == '3' && (card2 == '4' || card2 == '7')))
     {
         printf("American Express\n");
     }
@@ -62,7 +63,7 @@ int main(void)
         printf("Visa\n");
     }
 
-    // 
+    // If the card
     else
     {
         printf("Invalid\n");
