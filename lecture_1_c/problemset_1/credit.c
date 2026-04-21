@@ -140,10 +140,12 @@ int implementLuhn(long card)
     // Card has odd number of digits, start Luhns on index 0
     else
     {
-        for (int i = (length); i >= 0; i -= 2)
+        for (int i = (length - 2); i >= 0; i -= 2)
         {
             printf("Character: %c\n", cardString[i]);
             printf("Digit: %d\n", (cardString[i] - subtract));
+            int j = (cardString[i] - subtract);
+            printf("To be added: %i\n", j);
         }
     }
     return 0;
