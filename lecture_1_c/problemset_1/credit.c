@@ -26,33 +26,43 @@ int main(void)
 
     // Evaluate and card type
     long evalCard = evaluateInput(card);
+    printf("Card: %ld\n", card);
 
-    // Return card type and proceed if card is valid
-    if (evalCard == 1 || evalCard == 2 || evalCard == 3)
+    // Apply Luhn's algorithm to evaluate if checksum is valid
+    int checksum = implementLuhn(card);
+    printf("Checksum: %i\n", checksum);
+    // Provided valid checksum, use card evaluation to verify card type
+    if (checksum == 4)
         {
-        // Apply Luhn's algorithm to evaluate if checksum is valid
-        int checksum = implementLuhn(card);
-        if (checksum == 4)
-        // Provided valid checksum, use card evaluation to verify card type
+        // Return card type and proceed if card is valid
+        if (evalCard == 1 || evalCard == 2 || evalCard == 3)
         {
             if (evalCard == 1)
-                {
-                    printf("AMEX\n");
-                }
+            {
+                printf("AMEX\n");
+            }
 
             else if (evalCard == 2)
-                {
-                    printf("MASTERCARD\n");
-                }
+            {
+                printf("MASTERCARD\n");
+            }
 
             else if (evalCard == 3)
-                {
-                    printf("VISA\n");
-                }
+            {
+                printf("VISA\n");
+            }
+            else
+            {
+                printf("INVALID\n");
+            }
         }
-    }
+        else
+        {
+            printf("INVALID\n");
+        }
+}
 
-    // If card is invalid, print INVALID and terminate program
+    // If checksum is invalid, print INVALID and terminate program
     else
     {
         printf("INVALID\n");
@@ -74,7 +84,7 @@ long evaluateInput(long card)
     // Check length of number (minus one to account for the \0 implied in the string)
     int length = (strlen(cardString) - 1);
 
-    // Get first two characters of the card number to evaluate 
+    // Get first two characters of the card number to evaluate
     char card1 = cardString[0];
     char card2 = cardString[1];
 
@@ -103,15 +113,13 @@ long evaluateInput(long card)
     }
 }
 
-// Take verified card number and implement Luhn's algorithm 
+// Take verified card number and implement Luhn's algorithm
 int implementLuhn(long card)
 {
     // Check length of card number
     sprintf(cardString, "%ld\n", card);
     int length = (strlen(cardString) -1);
-    printf("Card length: %i\n", length);
-    
-    
+
     // Check if card number has odd or even number of digits
     int modulo = (length % 2);
 
@@ -126,7 +134,6 @@ int implementLuhn(long card)
         for (int i = (length - 2); i >= 0; i -= 2)
         {
             int j = ((cardString[i] - subtract) * 2);
-            // printf("%i\n", j);
             if (j > 9)
             {
                 sprintf(tenPlus, "%i\n", j);
@@ -141,19 +148,14 @@ int implementLuhn(long card)
                 evenCardMult += j;
             }
         }
-        printf("Multiplied sum: %i\n\n", evenCardMult);
 
         // Get digits to not be multiplied
         for (int i = (length - 1); i >= 0; i -= 2)
         {
-            // printf("Character: %c\n", cardString[i]);
             int j = (cardString[i] - subtract);
             evenCardNoMult += j;
         }
-        printf("Non multiplied sum: %i\n\n", evenCardNoMult);
         evenCardSum = (evenCardMult + evenCardNoMult);
-        printf("Sum of both %i\n\n", evenCardSum);
-        printf("Even card sum, modulo 10: %i\n", (evenCardSum % 10));
         if ((evenCardSum % 10) == 0)
         {
             return 4;
@@ -165,7 +167,6 @@ int implementLuhn(long card)
     }
 
     // Card has odd number of digits
-
     else
     {
     int oddCardMult = 0;
@@ -176,7 +177,6 @@ int implementLuhn(long card)
         for (int i = (length - 2); i >= 0; i -= 2)
         {
             int j = ((cardString[i] - subtract) * 2);
-            // printf("%i\n", j);
             if (j > 9)
             {
                 sprintf(tenPlus, "%i\n", j);
@@ -191,19 +191,14 @@ int implementLuhn(long card)
                 oddCardMult += j;
             }
         }
-        printf("Multiplied sum: %i\n", oddCardMult);
 
         // Get digits to not be multiplied
         for (int i = (length - 1); i >= 0; i -= 2)
         {
-            // printf("Character: %c\n", cardString[i]);
             int j = (cardString[i] - subtract);
             oddCardNoMult += j;
         }
-        printf("Non multiplied sum: %i\n\n", oddCardNoMult);
         oddCardSum = (oddCardMult + oddCardNoMult);
-        printf("Sum of both %i\n\n", oddCardSum);
-        printf("Odd card sum, modulo 10: %i\n", (oddCardSum % 10));
         if ((oddCardSum % 10) == 0)
         {
             return 4;
@@ -213,5 +208,4 @@ int implementLuhn(long card)
             return 0;
         }
     }
-    return 0;
 }
