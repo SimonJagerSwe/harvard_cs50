@@ -124,7 +124,6 @@ int implementLuhn(long card)
             if (j > 9)
             {
                 sprintf(tenPlus, "%i\n", j);
-                printf("String exceeding 10: %s\n", tenPlus);
                 for (int i = 0; i < 2; i++)
                 {
                     int j = (tenPlus[i] - subtract);
@@ -141,7 +140,7 @@ int implementLuhn(long card)
         // Get digits to not be multiplied
         for (int i = (length - 1); i >= 0; i -= 2)
         {
-            printf("Character: %c\n", cardString[i]);
+            // printf("Character: %c\n", cardString[i]);
             int j = (cardString[i] - subtract);
             evenCardNoMult += j;
         }
@@ -151,21 +150,38 @@ int implementLuhn(long card)
     }
 
     // Card has odd number of digits
-    else
 
-    // Multiply every other digit, going back from the second-to-last digit
+    else
     {
     int oddCardMult = 0;
     int oddCardNoMult = 0;
     int oddCardSum = 0;
+    char tenPlus[8];
+        // Multiply every other digit, going back from the second-to-last digit
         for (int i = (length - 2); i >= 0; i -= 2)
         {
-            printf("Character: %c\n", cardString[i]);
+            int j = ((cardString[i] - subtract) * 2);
+            printf("%i\n", j);
+            if (j > 9)
+            {
+                sprintf(tenPlus, "%i\n", j);
+                for (int i = 0; i < 2; i++)
+                {
+                    int j = (tenPlus[i] - subtract);
+                    oddCardMult += j;
+                }
+            }
+            else
+            {
+                oddCardMult += j;
+            }
+
+            /* printf("Character: %c\n", cardString[i]);
             printf("Digit: %d\n", (cardString[i] - subtract));
             int j = (cardString[i] - subtract);
             printf("To be added: %i\n", (j * 2));
             oddCardMult += (j * 2);
-            printf("Current sum: %i\n", oddCardMult);
+            printf("Current sum: %i\n", oddCardMult);*/
         }
         printf("Multiplied sum: %i\n", oddCardMult);
     }
