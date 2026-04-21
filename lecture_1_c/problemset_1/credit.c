@@ -10,6 +10,7 @@ char evenNumbers[8] = "";
 char oddNumbers[8] = "";
 int evenLength[8];
 int oddLength[8];
+int subtract = 48;
 
 
 // Functions
@@ -125,10 +126,15 @@ int implementLuhn(long card)
     // Card has even number of digits
     if (modulo == 0)
     {
-        for (int i = (length); i >= 0; i -= 2)
+        for (int i = (length - 1); i >= 0; i -= 2)
         {
-            printf("%c\n", cardString[i]);
+            printf("Character: %c\n", cardString[i]);
+            printf("Digit: %d\n", (cardString[i] - subtract));
+            int j = (cardString[i] - subtract);
+            printf("To be added: %i\n", j);
+            
         }
+        // printf("%i\n", evenLength);
     }
 
     // Card has odd number of digits, start Luhns on index 0
@@ -136,7 +142,8 @@ int implementLuhn(long card)
     {
         for (int i = (length); i >= 0; i -= 2)
         {
-            printf("%c\n", cardString[i]);
+            printf("Character: %c\n", cardString[i]);
+            printf("Digit: %d\n", (cardString[i] - subtract));
         }
     }
     return 0;
