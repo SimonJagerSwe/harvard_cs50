@@ -4,8 +4,13 @@
 #include<string.h>
 
 // Variables
-long card;
+long card[16];
 char cardString[16];
+char evenNumbers[8] = "";
+char oddNumbers[8] = "";
+int evenLength[8];
+int oddLength[8];
+
 
 // Functions
 long getInput(void);
@@ -111,15 +116,16 @@ int implementLuhn(long card)
     printf("Card as string: %s\n", cardString);
     int length = (strlen(cardString) -1);
     printf("Card length: %i\n", length);
-
+    
+    
     // Check if card number has odd or even number of digits
     int modulo = (length % 2);
     printf("Modulo: %i\n", modulo);
 
-    // Card has even number of digits, start Luhns on index 1
+    // Card has even number of digits
     if (modulo == 0)
     {
-        for (int i = 0; i < length; i += 2)
+        for (int i = (length); i >= 0; i -= 2)
         {
             printf("%c\n", cardString[i]);
         }
@@ -128,86 +134,10 @@ int implementLuhn(long card)
     // Card has odd number of digits, start Luhns on index 0
     else
     {
-
+        for (int i = (length); i >= 0; i -= 2)
+        {
+            printf("%c\n", cardString[i]);
+        }
     }
     return 0;
 }
-
-/*
-// Functions
-string getInput(void);
-// int identifyCard(string cardString);
-
-
-// Variables
-string card;
-long cardNumber;
-string cardString;
-// int amexLength = 15;
-// int mastercardLength = 16;
-// int visaLength[] = {'13', '16'};
-// int amexStarts[] = {'34', '37'};
-// int mastercardStarts[] = {'51', '52', '53', '54', '55'};
-// int visaStart = '4';
-int evenPlaces[8];
-int oddPlaces[8];
-
-// Main function
-int main(void)
-{
-    string card = getInput();
-    printf("Returned card number: %ld\n", card);
-}
-
-// User input validation
-string getInput(void)
-{
-    long cardNumber = get_long("Number: ");
-    printf("Card number: %ld\n", cardNumber);
-
-    // Convert long to string
-    sprintf(cardString, "%ld\n", cardNumber);
-    printf("Card string: %s\n", cardString);
-    return cardString;
-    // return 0;
-}
-
-// Identify card type
-int identifyCard(string cardString)
-{
-    printf("Card number: %s\n", cardString);
-    printf("Card start: %c\n", cardString[0]);
-    printf("Card length is %lu\n", strlen(cardString));
-    // Check if card is AmEx
-    if (strlen(cardString) == 15)
-    {
-        printf("AmEx card detected");
-    }
-    // Check if card is MasterCard/Visa
-    else if (strlen(cardString) == 16)
-    {
-        printf("MasterCard or Visa card detected");
-        // Check if card is MasterCard
-    }
-    // Check if card is Visa
-    else if (strlen(cardString) == 13)
-    {
-        printf("Visa card detected");
-    }
-
-    // Invalid card format detected
-    else
-    {
-        printf("INVALID");
-    }
-    return 0;
-}
-
-
-// Create lists of every odd/even digit placements
-
-// Apply Luhn's to even placement list
-
-// Combine lists
-
-// Verify list validity */
