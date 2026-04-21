@@ -18,24 +18,31 @@ int main(void)
     // Get card number
     long card = getInput();
     printf("Returned card number: %ld\n", card);
-    // Evaluate card type
+
+    // Evaluate and card type
     long evalCard = evaluateInput(card);
     printf("Card status after evaluation: %ld\n", evalCard);
-    if (evalCard == 1)
-    {
-        printf("AMEX\n");
-    }
 
-    else if (evalCard == 2)
-    {
-        printf("MASTERCARD\n");
-    }
+    // Return card type and proceed if card is valid
+    if (evalCard == 1 || evalCard == 2 || evalCard == 3)
+        {
+        if (evalCard == 1)
+        {
+            printf("AMEX\n");
+        }
 
-    else if (evalCard == 3)
-    {
-        printf("VISA\n");
+        else if (evalCard == 2)
+        {
+            printf("MASTERCARD\n");
+        }
+
+        else if (evalCard == 3)
+        {
+            printf("VISA\n");
+        }        
     }
     
+    // If card is invalid, print INVALID and terminate program
     else
     {
         printf("INVALID\n");
