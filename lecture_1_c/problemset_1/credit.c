@@ -3,7 +3,34 @@
 #include<stdio.h>
 #include<string.h>
 
+// Variables
+unsigned long card;
+char cardString[16];
 
+// Functions
+long getInput(void);
+
+// Main function
+int main(void)
+{
+    long card = getInput();
+    printf("Returned card number: %ld\n", card);
+}
+
+// User input validation
+long getInput(void)
+{
+    long cardNumber = get_long("Number: ");
+    printf("Card number: %ld\n", cardNumber);
+
+    // Convert long to string
+    // sprintf(cardString, "%ld\n", cardNumber);
+    // printf("Card string: %s\n", cardString);
+    // return cardString;
+    // return 0;
+    return cardNumber;
+}
+/*
 // Functions
 string getInput(void);
 // int identifyCard(string cardString);
@@ -80,4 +107,4 @@ int identifyCard(string cardString)
 
 // Combine lists
 
-// Verify list validity
+// Verify list validity */
