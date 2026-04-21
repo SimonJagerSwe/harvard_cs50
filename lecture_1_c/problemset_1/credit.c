@@ -32,24 +32,24 @@ int main(void)
         {
         // Apply Luhn's algorithm to evaluate if checksum is valid
         int checksum = implementLuhn(card);
-        printf("Checksum : %i\n", checksum);
-
+        if (checksum == 4)
         // Provided valid checksum, use card evaluation to verify card type
-        if (evalCard == 1)
         {
-            printf("AMEX\n");
-        }
+            if (evalCard == 1)
+                {
+                    printf("AMEX\n");
+                }
 
-        else if (evalCard == 2)
-        {
-            printf("MASTERCARD\n");
-        }
+            else if (evalCard == 2)
+                {
+                    printf("MASTERCARD\n");
+                }
 
-        else if (evalCard == 3)
-        {
-            printf("VISA\n");
+            else if (evalCard == 3)
+                {
+                    printf("VISA\n");
+                }
         }
-        
     }
 
     // If card is invalid, print INVALID and terminate program
