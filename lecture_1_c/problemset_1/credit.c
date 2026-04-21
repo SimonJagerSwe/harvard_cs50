@@ -25,6 +25,12 @@ int main(void)
     {
         printf("AMEX\n");
     }
+
+    else if (evalCard == 2)
+    {
+        printf("MASTERCARD\n");
+    }
+
     else if (evalCard == 0)
     {
         printf("INVALID\n");
@@ -61,7 +67,19 @@ long evaluateInput(long card)
         printf("AMEX\n");
         return 1;
     }
-    return 0;
+
+    // Evaluate if card is MasterCard
+    else if (length == 16 && (card1 == '5' && (card2 == '1' || card2 == '2' || card2 == '3' || card2 == '4' || card2 == '5')))
+    {
+        printf("MasterCard\n");
+        return 2;
+    }
+
+    // If card is invalid, return 0
+    else
+    {
+        return 0;
+    }
 }
 
 
