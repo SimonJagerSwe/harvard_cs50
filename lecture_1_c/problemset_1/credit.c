@@ -4,12 +4,18 @@
 #include<string.h>
 
 // Variables
-long card;
+long card[16];
 char cardString[16];
+int checksum;
+char evenNumbers[8] = "";
+char oddNumbers[8] = "";
+int subtract = 48;
+
 
 // Functions
 long getInput(void);
 long evaluateInput(long card);
+int implementLuhn(long card);
 
 
 // Main function
@@ -17,32 +23,46 @@ int main(void)
 {
     // Get card number
     long card = getInput();
-    printf("Returned card number: %ld\n", card);
 
     // Evaluate and card type
     long evalCard = evaluateInput(card);
-    printf("Card status after evaluation: %ld\n", evalCard);
+    printf("Card: %ld\n", card);
 
-    // Return card type and proceed if card is valid
-    if (evalCard == 1 || evalCard == 2 || evalCard == 3)
+    // Apply Luhn's algorithm to evaluate if checksum is valid
+    int checksum = implementLuhn(card);
+    printf("Checksum: %i\n", checksum);
+    // Provided valid checksum, use card evaluation to verify card type
+    if (checksum == 4)
         {
-        if (evalCard == 1)
+        // Return card type and proceed if card is valid
+        if (evalCard == 1 || evalCard == 2 || evalCard == 3)
         {
-            printf("AMEX\n");
+            if (evalCard == 1)
+            {
+                printf("AMEX\n");
+            }
+
+            else if (evalCard == 2)
+            {
+                printf("MASTERCARD\n");
+            }
+
+            else if (evalCard == 3)
+            {
+                printf("VISA\n");
+            }
+            else
+            {
+                printf("INVALID\n");
+            }
         }
-
-        else if (evalCard == 2)
+        else
         {
-            printf("MASTERCARD\n");
+            printf("INVALID\n");
         }
+}
 
-        else if (evalCard == 3)
-        {
-            printf("VISA\n");
-        }        
-    }
-    
-    // If card is invalid, print INVALID and terminate program
+    // If checksum is invalid, print INVALID and terminate program
     else
     {
         printf("INVALID\n");
@@ -53,44 +73,36 @@ int main(void)
 long getInput(void)
 {
     long cardNumber = get_long("Number: ");
-    // printf("Card number: %ld\n", cardNumber);
     return cardNumber;
 }
 
 // Evaluate user input
 long evaluateInput(long card)
 {
-    printf("Card number for evaluation as long: %ld\n", card);
-    // Convert card number (long) to a string for sliceability
     sprintf(cardString, "%ld\n", card);
-    printf("Card as string: %s\n", cardString);
 
     // Check length of number (minus one to account for the \0 implied in the string)
     int length = (strlen(cardString) - 1);
-    printf("Card number lengt: %i\n", length);
 
-    // Get first two characters of the card number to evaluate 
+    // Get first two characters of the card number to evaluate
     char card1 = cardString[0];
     char card2 = cardString[1];
 
     // Evaluate if card is AmEx
     if (length == 15 && (card1 == '3' && (card2 == '4' || card2 == '7')))
     {
-        printf("AMEX\n");
         return 1;
     }
 
     // Evaluate if card is MasterCard
     else if (length == 16 && (card1 == '5' && (card2 == '1' || card2 == '2' || card2 == '3' || card2 == '4' || card2 == '5')))
     {
-        printf("MasterCard\n");
         return 2;
     }
 
     // Evaluate if card is Visa
     else if ((length == 13 || length == 16) && card1 == '4')
     {
-        printf("Visa\n");
         return 3;
     }
 
@@ -101,82 +113,99 @@ long evaluateInput(long card)
     }
 }
 
-
-/*
-// Functions
-string getInput(void);
-// int identifyCard(string cardString);
-
-
-// Variables
-string card;
-long cardNumber;
-string cardString;
-// int amexLength = 15;
-// int mastercardLength = 16;
-// int visaLength[] = {'13', '16'};
-// int amexStarts[] = {'34', '37'};
-// int mastercardStarts[] = {'51', '52', '53', '54', '55'};
-// int visaStart = '4';
-int evenPlaces[8];
-int oddPlaces[8];
-
-// Main function
-int main(void)
+// Take verified card number and implement Luhn's algorithm
+int implementLuhn(long card)
 {
-    string card = getInput();
-    printf("Returned card number: %ld\n", card);
-}
+    // Check length of card number
+    sprintf(cardString, "%ld\n", card);
+    int length = (strlen(cardString) -1);
 
-// User input validation
-string getInput(void)
-{
-    long cardNumber = get_long("Number: ");
-    printf("Card number: %ld\n", cardNumber);
+    // Check if card number has odd or even number of digits
+    int modulo = (length % 2);
 
-    // Convert long to string
-    sprintf(cardString, "%ld\n", cardNumber);
-    printf("Card string: %s\n", cardString);
-    return cardString;
-    // return 0;
-}
+    // Card has even number of digits
+    if (modulo == 0)
+    {
+    int evenCardMult = 0;
+    int evenCardNoMult = 0;
+    int evenCardSum = 0;
+    char tenPlus[8];
+        // Multiply every other digit, going back from the second-to-last digit
+        for (int i = (length - 2); i >= 0; i -= 2)
+        {
+            int j = ((cardString[i] - subtract) * 2);
+            if (j > 9)
+            {
+                sprintf(tenPlus, "%i\n", j);
+                for (int i = 0; i < 2; i++)
+                {
+                    int j = (tenPlus[i] - subtract);
+                    evenCardMult += j;
+                }
+            }
+            else
+            {
+                evenCardMult += j;
+            }
+        }
 
-// Identify card type
-int identifyCard(string cardString)
-{
-    printf("Card number: %s\n", cardString);
-    printf("Card start: %c\n", cardString[0]);
-    printf("Card length is %lu\n", strlen(cardString));
-    // Check if card is AmEx
-    if (strlen(cardString) == 15)
-    {
-        printf("AmEx card detected");
-    }
-    // Check if card is MasterCard/Visa
-    else if (strlen(cardString) == 16)
-    {
-        printf("MasterCard or Visa card detected");
-        // Check if card is MasterCard
-    }
-    // Check if card is Visa
-    else if (strlen(cardString) == 13)
-    {
-        printf("Visa card detected");
+        // Get digits to not be multiplied
+        for (int i = (length - 1); i >= 0; i -= 2)
+        {
+            int j = (cardString[i] - subtract);
+            evenCardNoMult += j;
+        }
+        evenCardSum = (evenCardMult + evenCardNoMult);
+        if ((evenCardSum % 10) == 0)
+        {
+            return 4;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
-    // Invalid card format detected
+    // Card has odd number of digits
     else
     {
-        printf("INVALID");
+    int oddCardMult = 0;
+    int oddCardNoMult = 0;
+    int oddCardSum = 0;
+    char tenPlus[8];
+        // Multiply every other digit, going back from the second-to-last digit
+        for (int i = (length - 2); i >= 0; i -= 2)
+        {
+            int j = ((cardString[i] - subtract) * 2);
+            if (j > 9)
+            {
+                sprintf(tenPlus, "%i\n", j);
+                for (int i = 0; i < 2; i++)
+                {
+                    int j = (tenPlus[i] - subtract);
+                    oddCardMult += j;
+                }
+            }
+            else
+            {
+                oddCardMult += j;
+            }
+        }
+
+        // Get digits to not be multiplied
+        for (int i = (length - 1); i >= 0; i -= 2)
+        {
+            int j = (cardString[i] - subtract);
+            oddCardNoMult += j;
+        }
+        oddCardSum = (oddCardMult + oddCardNoMult);
+        if ((oddCardSum % 10) == 0)
+        {
+            return 4;
+        }
+        else
+        {
+            return 0;
+        }
     }
-    return 0;
 }
-
-
-// Create lists of every odd/even digit placements
-
-// Apply Luhn's to even placement list
-
-// Combine lists
-
-// Verify list validity */
