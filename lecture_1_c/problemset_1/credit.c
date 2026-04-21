@@ -4,32 +4,67 @@
 #include<string.h>
 
 // Variables
-unsigned long card;
+long card;
 char cardString[16];
 
 // Functions
 long getInput(void);
+long evaluateInput(long card);
+
 
 // Main function
 int main(void)
 {
+    // Get card number
     long card = getInput();
     printf("Returned card number: %ld\n", card);
+    // Evaluate card type
+    long evalCard = evaluateInput(card);
+    printf("Card status after evaluation: %ld\n", evalCard);
+    if (evalCard == 1)
+    {
+        printf("AMEX\n");
+    }
+    else if (evalCard == 0)
+    {
+        printf("INVALID\n");
+    }
 }
 
-// User input validation
+// Get user input
 long getInput(void)
 {
     long cardNumber = get_long("Number: ");
-    printf("Card number: %ld\n", cardNumber);
-
-    // Convert long to string
-    // sprintf(cardString, "%ld\n", cardNumber);
-    // printf("Card string: %s\n", cardString);
-    // return cardString;
-    // return 0;
+    // printf("Card number: %ld\n", cardNumber);
     return cardNumber;
 }
+
+// Evaluate user input
+long evaluateInput(long card)
+{
+    printf("Card number for evaluation as long: %ld\n", card);
+    // Convert card number (long) to a string for sliceability
+    sprintf(cardString, "%ld\n", card);
+    printf("Card as string: %s\n", cardString);
+
+    // Check length of number (minus one to account for the \0 implied in the string)
+    int length = (strlen(cardString) - 1);
+    printf("Card number lengt: %i\n", length);
+
+    // Get first two characters of the card number to evaluate 
+    char card1 = cardString[0];
+    char card2 = cardString[1];
+
+    // Evaluate if card is AmEx
+    if (length == 15 && (card1 == '3' && (card2 == '4' || card2 == '7')))
+    {
+        printf("AMEX\n");
+        return 1;
+    }
+    return 0;
+}
+
+
 /*
 // Functions
 string getInput(void);
