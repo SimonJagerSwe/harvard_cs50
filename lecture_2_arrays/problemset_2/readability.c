@@ -5,14 +5,24 @@
 
 // Functions
 string textInput();
-char splitter(string text);
+char counter(string text);
 float calcLetters(char splitText);
 float calcSentences(char splitText);
 int colemanLiau(float avgLetters, float avgSentences);
 
 // Variables
 string text;
-// char splitText;
+char counted;
+int words = 1;
+int letters = 0;
+char punctuation[] = {
+    '.', ',', '\'', '?', 
+    '!', ':', ';', '\"', 
+    '(', ')', '{', '}',
+    '[', ']', '&', '/', 
+    '\\', '-', '_', '#', 
+    '%', '+', '*'     
+    };
 // float avgLetters;
 // float avgSentences;
 // int index;
@@ -22,8 +32,8 @@ int main(void)
 {
     text = textInput();
     printf("Text input: %s\n", text);
-    // splitText = splitter(text);
-    // printf("Split text: %c\n", splitText);
+    counted = counter(text);
+    printf("Number of words: %i\n", words);
     // avgLetters = calcLetters(splitText);
     // printf("Average number of letters per 100 words: %f\n", avgLetters);
     // avgSentences = calcSentences(splitText);
@@ -40,9 +50,21 @@ string textInput(void)
     return text;
 }
 
-// Split text into segments of 100 words
-char splitter(string text)
+// Count words by counting blank spaces
+char counter(string text)
 {
+    printf("Splitting text...\n");
+    printf("Text to split:\n%s\n", text);
+    for (int i = 0; i < strlen(text); i++)
+    {
+        printf("%c\n", text[i]);
+        if (text[i] == ' ')
+        {
+            words++;
+        }
+        
+    }
+    printf("Number of words: %i\n", words);
     return 0;
 }
 
