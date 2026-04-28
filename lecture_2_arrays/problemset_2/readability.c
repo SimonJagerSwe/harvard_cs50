@@ -15,14 +15,16 @@ string text;
 char counted;
 int words = 1;
 int letters = 0;
-char punctuation[] = {
+char character;
+// This aray should be usable for checking punctuation, but I haven't figured that out yet
+/*char punctuation[23] = {
     '.', ',', '\'', '?', 
     '!', ':', ';', '\"', 
     '(', ')', '{', '}',
     '[', ']', '&', '/', 
     '\\', '-', '_', '#', 
     '%', '+', '*'     
-    };
+    };*/    
 // float avgLetters;
 // float avgSentences;
 // int index;
@@ -33,7 +35,7 @@ int main(void)
     text = textInput();
     printf("Text input: %s\n", text);
     counted = counter(text);
-    printf("Number of words: %i\n", words);
+    printf("Number of words: %i\nNumber of letters: %i\n", words, letters);
     // avgLetters = calcLetters(splitText);
     // printf("Average number of letters per 100 words: %f\n", avgLetters);
     // avgSentences = calcSentences(splitText);
@@ -50,21 +52,56 @@ string textInput(void)
     return text;
 }
 
-// Count words by counting blank spaces
 char counter(string text)
-{
-    printf("Splitting text...\n");
-    printf("Text to split:\n%s\n", text);
-    for (int i = 0; i < strlen(text); i++)
+{   
+    // printf("Text to count:\n%s\n", text);
+    // Iterate over the text to identify whitespaces to count words and to count letters
+    for (int i = 0; i <= strlen(text); i++)
     {
-        printf("%c\n", text[i]);
-        if (text[i] == ' ')
+        character = text[i];
+        // Count words by counting blank spaces
+        if (character == ' ')
         {
+            // printf("Whitespace found. Current number of words: %i\n", words);
             words++;
         }
-        
+        else
+        {            
+            if (
+                character != '.' &&
+                character != ',' &&
+                character != '!' &&
+                character != '?' &&
+                character != ':' &&
+                character != ';' &&
+                character != '"' &&
+                character != '&' &&
+                character != '%' &&
+                character != '\'' &&
+                character != '\\' &&
+                character != '/' &&
+                character != '+' &&
+                character != '-' &&
+                character != '*' &&
+                character != '_' &&
+                character != '(' &&
+                character != ')' &&
+                character != '{' &&
+                character != '}' &&
+                character != '[' &&
+                character != ']' &&
+                character != '`')
+            {
+                letters++;
+                // printf("Character found: %c\nCurrent number of letters: %i\n", character, letters);
+            }
+        }    
     }
-    printf("Number of words: %i\n", words);
+
+    // Remove one from the letter count to account for break character
+    letters--;
+    // printf("Number of words: %i\n", words);
+    // printf("Number of letters: %i\n", letters);
     return 0;
 }
 
