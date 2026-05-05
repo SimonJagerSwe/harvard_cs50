@@ -6,9 +6,9 @@
 // Functions
 string textInput();
 char counter(string text);
-float calcLetters(char splitText);
-float calcSentences(char splitText);
-int colemanLiau(float avgLetters, float avgSentences);
+// float calcLetters(char splitText);
+// float calcSentences(char splitText);
+int colemanLiau(int words, int letters);
 
 // Variables
 string text;
@@ -36,12 +36,6 @@ int main(void)
     printf("Text input: %s\n", text);
     counted = counter(text);
     printf("Number of words: %i\nNumber of letters: %i\n", words, letters);
-    // avgLetters = calcLetters(splitText);
-    // printf("Average number of letters per 100 words: %f\n", avgLetters);
-    // avgSentences = calcSentences(splitText);
-    // printf("Average number of sentences per 100 words: %f\n", avgSentences);
-    // index = colemanLiau(avgLetters, avgSentences);
-    // printf("Coleman-Liau index: %i\n", index);
 
 }
 
@@ -105,20 +99,8 @@ char counter(string text)
     return 0;
 }
 
-// Calculate average number of letters per 100 words
-float calcLetters(char splitText)
-{
-    return 0;
-}
-
-// Calculate the average number of sentences
-float calcSentences(char splitText)
-{
-    return 0;
-}
-
 // Implement the Coleman-Liau index and return a value
-int colemanLiau(float avgLetters, float avgSentences)
+int colemanLiau(int words, int letters)
 {
     return 0;
 }
