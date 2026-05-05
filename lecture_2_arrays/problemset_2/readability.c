@@ -24,7 +24,7 @@ int main(void)
     printf("Text input: %s\n", text);
     counted = counter(text);
     printf("Number of sentences: %i\nNumber of words: %i\nNumber of letters: %i\n",sentences, words, letters);
-    grade = colemanLiau(words, letters);
+    grade = colemanLiau(sentences, words, letters);
     printf("Coleman-Liau algorithm run\n");
 }
 
