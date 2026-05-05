@@ -15,6 +15,7 @@ string text;
 char counted;
 int words = 1;
 int letters = 0;
+int grade;
 char character;
 // This aray should be usable for checking punctuation, but I haven't figured that out yet
 /*char punctuation[23] = {
@@ -36,7 +37,8 @@ int main(void)
     printf("Text input: %s\n", text);
     counted = counter(text);
     printf("Number of words: %i\nNumber of letters: %i\n", words, letters);
-
+    grade = colemanLiau(words, letters);
+    printf("Coleman-Liau algorithm run\n");
 }
 
 // Read text input
@@ -102,6 +104,7 @@ char counter(string text)
 // Implement the Coleman-Liau index and return a value
 int colemanLiau(int words, int letters)
 {
+    printf("Implementing colemanLiau...\n");
     return 0;
 }
 
