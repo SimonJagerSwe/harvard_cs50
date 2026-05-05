@@ -11,8 +11,9 @@ int colemanLiau(int words, int letters);
 // Variables
 string text;
 char counted;
+int sentences;
 int words = 1;
-int letters = 0;
+int letters;
 int grade;
 char character;
 
@@ -22,7 +23,7 @@ int main(void)
     text = textInput();
     printf("Text input: %s\n", text);
     counted = counter(text);
-    printf("Number of words: %i\nNumber of letters: %i\n", words, letters);
+    printf("Number of sentences: %i\nNumber of words: %i\nNumber of letters: %i\n",sentences, words, letters);
     grade = colemanLiau(words, letters);
     printf("Coleman-Liau algorithm run\n");
 }
@@ -45,6 +46,10 @@ char counter(string text)
         if (character == ' ')
         {
             words++;
+        }
+        else if (character == '.' || character == '!' || character == '?')
+        {
+            sentences++;
         }
         else
         {            
