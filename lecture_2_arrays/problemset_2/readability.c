@@ -6,8 +6,6 @@
 // Functions
 string textInput();
 char counter(string text);
-// float calcLetters(char splitText);
-// float calcSentences(char splitText);
 int colemanLiau(int words, int letters);
 
 // Variables
@@ -17,18 +15,6 @@ int words = 1;
 int letters = 0;
 int grade;
 char character;
-// This aray should be usable for checking punctuation, but I haven't figured that out yet
-/*char punctuation[23] = {
-    '.', ',', '\'', '?', 
-    '!', ':', ';', '\"', 
-    '(', ')', '{', '}',
-    '[', ']', '&', '/', 
-    '\\', '-', '_', '#', 
-    '%', '+', '*'     
-    };*/    
-// float avgLetters;
-// float avgSentences;
-// int index;
 
 // Main function
 int main(void)
@@ -58,7 +44,6 @@ char counter(string text)
         // Count words by counting blank spaces
         if (character == ' ')
         {
-            // printf("Whitespace found. Current number of words: %i\n", words);
             words++;
         }
         else
@@ -89,15 +74,12 @@ char counter(string text)
                 character != '`')
             {
                 letters++;
-                // printf("Character found: %c\nCurrent number of letters: %i\n", character, letters);
             }
         }    
     }
 
     // Remove one from the letter count to account for break character
     letters--;
-    // printf("Number of words: %i\n", words);
-    // printf("Number of letters: %i\n", letters);
     return 0;
 }
 
