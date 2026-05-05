@@ -6,7 +6,7 @@
 // Functions
 string textInput();
 char counter(string text);
-int colemanLiau(int words, int letters);
+int colemanLiau(int sentences, int words, int letters);
 
 // Variables
 string text;
@@ -89,7 +89,7 @@ char counter(string text)
 }
 
 // Implement the Coleman-Liau index and return a value
-int colemanLiau(int words, int letters)
+int colemanLiau(int sentences, int words, int letters)
 {
     printf("Implementing colemanLiau...\n");
     return 0;
