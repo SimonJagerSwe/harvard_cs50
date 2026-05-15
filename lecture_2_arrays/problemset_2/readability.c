@@ -25,11 +25,8 @@ string score;
 int main(void)
 {
     text = textInput();
-    // printf("Text input: %s\n", text);
     counted = counter(text);
-    // printf("Number of letters: %i\nNumber of words: %i\nNumber of sentences: %i\n", letters, words, sentences);
     grade = colemanLiau(letters, words, sentences);
-    // printf("Coleman-Liau algorithm run\n");
     score = result(grade);
 }
 
@@ -74,7 +71,6 @@ int colemanLiau(int letters, int words, int sentences)
     float let = (float) letters / (float) words * 100;
     float sent = (float) sentences / (float) words * 100;
     int grade = round(0.0588 * let - 0.296 * sent - 15.8);
-    // printf("Grade: %d\n", grade);
     return grade;
 }
 
