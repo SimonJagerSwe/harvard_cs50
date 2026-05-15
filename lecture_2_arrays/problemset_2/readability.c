@@ -41,13 +41,10 @@ char counter(string text)
 {   
     // Iterate over the text to count letters
     for (int i = 0; i < strlen(text); i++)
-    {
-        if ((text[i] >= 65 && text[i] < 90) || (text[i] >= 97 && text[i] < 122))
+    {        
+        if (isalpha(text[i]))
         {
-            if (isalpha(text[i]))
-            {
-                letters++;
-            }
+            letters++;
         }
 
         // Iterate over text to count whitespaces to count words
