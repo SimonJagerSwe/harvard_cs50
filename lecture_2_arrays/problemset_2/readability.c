@@ -68,6 +68,7 @@ char counter(string text)
 // Implement the Coleman-Liau index and return a value
 int colemanLiau(int letters, int words, int sentences)
 {
+    printf("Number of letters: %i\nNumber of words: %i\nNumber of sentences: %i\n", letters, words, sentences);
     float let = (float) letters / (float) words * 100;
     float sent = (float) sentences / (float) words * 100;
     int grade = round(0.0588 * let - 0.296 * sent - 15.8);
@@ -78,9 +79,9 @@ int colemanLiau(int letters, int words, int sentences)
 string result(int grade)
 {
     string result;
-    if (grade >= 16)
+    if (grade <= 1)
     {
-        printf("Grade 16+\n");
+        printf("Before grade 1\n");
     }
     else if (grade >= 1 && grade < 16)
     {
@@ -88,7 +89,7 @@ string result(int grade)
     }
     else
     {
-        printf("Before Grade 1\n");
+        printf("Grade 16+\n");
     }
     return 0;
 }
