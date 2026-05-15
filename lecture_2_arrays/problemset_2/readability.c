@@ -8,6 +8,7 @@
 string textInput();
 char counter(string text);
 int colemanLiau(int sentences, int words, int letters);
+string result(int grade);
 
 // Variables
 string text;
@@ -17,6 +18,7 @@ int words = 1;
 int letters;
 int grade;
 char character;
+string score;
 
 // Main function
 int main(void)
@@ -24,9 +26,11 @@ int main(void)
     text = textInput();
     printf("Text input: %s\n", text);
     counted = counter(text);
-    // printf("Number of sentences: %i\nNumber of words: %i\nNumber of letters: %i\n",sentences, words, letters);
     grade = colemanLiau(sentences, words, letters);
+    printf("Grade: %i\n", grade);
     printf("Coleman-Liau algorithm run\n");
+    if (grade < 1)
+    result(grade);
 }
 
 // Read text input
@@ -99,8 +103,25 @@ int colemanLiau(int sentences, int words, int letters)
     float sent = sentences / words * 100;
     printf("Sentences input: %i\nSentences float: %f\n", sentences, sent);
     int grade = round(0.0588 * let - 0.296 * sent - 15.8);
-    printf("Grade: %d\n", grade);
-    return 0;
+    // printf("Grade: %d\n", grade);
+    return grade;
 }
 
 // Check value against grade indicator
+string result(int grade)
+{
+    string result;
+    if (grade < 1)
+    {
+        printf("Before grade 1");
+    }
+    else if (grade >= 1 && grade < 16)
+    {
+        printf("Grade %i\n", grade);
+    }
+    else
+    {
+        printf("Grade 16+\n");
+    }
+    return 0;
+}
