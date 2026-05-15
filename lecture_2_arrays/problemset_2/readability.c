@@ -1,6 +1,7 @@
 // ########## Problemset 2 - Readability ########## //
-#include <stdio.h>
 #include <cs50.h>
+#include <math.h>
+#include <stdio.h>
 #include <string.h>
 
 // Functions
@@ -23,7 +24,7 @@ int main(void)
     text = textInput();
     printf("Text input: %s\n", text);
     counted = counter(text);
-    printf("Number of sentences: %i\nNumber of words: %i\nNumber of letters: %i\n",sentences, words, letters);
+    // printf("Number of sentences: %i\nNumber of words: %i\nNumber of letters: %i\n",sentences, words, letters);
     grade = colemanLiau(sentences, words, letters);
     printf("Coleman-Liau algorithm run\n");
 }
@@ -92,6 +93,13 @@ char counter(string text)
 int colemanLiau(int sentences, int words, int letters)
 {
     printf("Implementing colemanLiau...\n");
+    printf("Number of words: %i\nNumber of letters: %i\nNumber of sentences: %i\n", words, letters, sentences);
+    float let = letters / words * 100;
+    printf("Letter input: %i\nLetter float: %f\n", letters, let);
+    float sent = sentences / words * 100;
+    printf("Sentences input: %i\nSentences float: %f\n", sentences, sent);
+    int grade = round(0.0588 * let - 0.296 * sent - 15.8);
+    printf("Grade: %d\n", grade);
     return 0;
 }
 
