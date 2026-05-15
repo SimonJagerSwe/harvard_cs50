@@ -15,7 +15,7 @@ string result(int grade);
 string text;
 char counted;
 int sentences;
-int words = 1;
+int words = 1;  // Initialise as 1 in order to account for lack of whitespace after the final sentence
 int letters;
 int grade;
 char character;
@@ -44,23 +44,24 @@ string textInput(void)
 
 char counter(string text)
 {   
+    // Iterate over the text to count letters
     for (int i = 0; i < strlen(text); i++)
     {
         if ((text[i] >= 65 && text[i] < 90) || (text[i] >= 97 && text[i] < 122))
         {
             if (isalpha(text[i]))
             {
-                // printf("%c\n", text[i]);
                 letters++;
-                // printf("Current number of letters: %i\n", letters);
             }
         }
 
+        // Iterate over text to count whitespaces to count words
         else if (text[i] == ' ')
         {
             words++;
         }
 
+        // Iterate over the text to count periods, exlamation marks and question marks to count sentences
         else if (text[i] == '.' || text[i] == '!' || text[i] == '?')
         {
             sentences++;
@@ -68,55 +69,6 @@ char counter(string text)
     }
     return 0;
 }
-    // Iterate over the text to identify whitespaces to count words and to count letters
-    /*for (int i = 0; i <= strlen(text); i++)
-    {
-        character = text[i];
-        // Count words by counting blank spaces
-        if (character == ' ')
-        {
-            words++;
-        }
-        else if (character == '.' || character == '!' || character == '?')
-        {
-            sentences++;
-        }
-        else
-        {            
-            if (
-                character != '.' &&
-                character != ',' &&
-                character != '!' &&
-                character != '?' &&
-                character != ':' &&
-                character != ';' &&
-                character != '"' &&
-                character != '&' &&
-                character != '%' &&
-                character != '\'' &&
-                character != '\\' &&
-                character != '/' &&
-                character != '+' &&
-                character != '-' &&
-                character != '*' &&
-                character != '_' &&
-                character != '(' &&
-                character != ')' &&
-                character != '{' &&
-                character != '}' &&
-                character != '[' &&
-                character != ']' &&
-                character != '`')
-            {
-                letters++;
-            }
-        }    
-    }
-
-    // Remove one from the letter count to account for break character
-    letters--;
-}
-    */
 
 // Implement the Coleman-Liau index and return a value
 int colemanLiau(int letters, int words, int sentences)
