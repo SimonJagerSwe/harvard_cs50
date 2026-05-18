@@ -12,7 +12,7 @@ string implementCipher(int k, string plaintext);
 // Variables
 int k;
 string plaintext;
-char cipherImplement[];
+// char cipherImplement[];
 string ciphertext;
 
 // Main function
@@ -55,7 +55,9 @@ string implementCipher(int k, string plaintext)
         printf("Char: %c\nInt: %i\n", letter, letterInt);
         if ((letterInt >= 65 && letterInt <= 90) || (letterInt >= 97 && letterInt <= 122))
         {
-            printf("%i\n", (letterInt + k));
+            char newLetter = letterInt + k;
+            printf("New int: %i\n", (letterInt + k));
+            printf("New char: %c\n", newLetter); 
         }
     }
     // printf("\n");
