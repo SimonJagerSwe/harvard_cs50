@@ -19,8 +19,25 @@ string ciphertext;
 // Main function
 int main(int argc, string argv[])
 {
+    printf("%s\n", argv[1]);
+    for (int i = 0; i < strlen(argv); i++)
+    {
+        printf("%s\n", argv[i]);
+    }
+    if (argc != 2)
+    {
+        printf("Usage: ./caesar key\n");
+        return 1;
+    }
+    
     k = strtol(argv[1], NULL, 10);
-    if (argc != 2 || k <= 0)
+    // for (int i = 0; i < strlen(argv); i++)
+    // {
+    //    printf("%s\n", argv[i]);
+    // }
+
+    printf("%i\n", k);
+    if (k <= 0)
     {
         printf("Usage: ./caesar key\n");
         return 1;
@@ -32,8 +49,7 @@ int main(int argc, string argv[])
     }
     plaintext = getPlain();
     string output = implementCipher(k, plaintext);
-    printf("ciphertext: %s", output);
-    printf("\n");
+    printf("ciphertext: %sn", output);
     return 0;
 }
 
@@ -54,11 +70,18 @@ string implementCipher(int key, string input)
     {
         // Convert character to int to check if it matches an ascii number
         int letterInt = input[i];
-        if ((letterInt >= 65 && letterInt <= 90) || (letterInt >= 97 && letterInt <= 122))
+
+        // If character is not a letter, add it as is
+        if (letterInt >= 32 && letterInt <= 64)
+        {
+            char punctuation = letterInt;
+            cipherImplement[cipherIndex] = punctuation;
+            cipherIndex++;
+        }
+        else if ((letterInt >= 65 && letterInt <= 90) || (letterInt >= 97 && letterInt <= 122))
         {
             // Add k value to letter ascii number
             int newInt = letterInt + key;
-            // printf("Old int: %i\nNew int: %i\n",letterInt, newInt);
 
             // If the new ascii value wraps around the alphabet, subtract 26  to get correct letter and add it to the ciphertext
             if ((newInt > 90 && newInt <= 97) || newInt > 122)
@@ -72,9 +95,9 @@ string implementCipher(int key, string input)
             // Add already valid new ascii number to ciphertext
             else
             {
-            char newLetter = newInt;
-            cipherImplement[cipherIndex] = newLetter;
-            cipherIndex++;
+                char newLetter = newInt;
+                cipherImplement[cipherIndex] = newLetter;
+                cipherIndex++;
             }
         }
     }
