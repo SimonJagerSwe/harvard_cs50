@@ -23,9 +23,15 @@ int main(int argc, string argv[])
         printf("Argument taken: %s\n", argv[1]);
         k = strtol(argv[1], NULL, 10);
         printf("K value: %i\n", k);
+
+        // Quit if k value is negative or 0
         if (k <= 0)
         {
             printf("%s", wrongInput);
+        }
+        else if (k >= 27)
+        {
+            printf("Reduced value: %i\n", (k % 26));
         }
     }
 
