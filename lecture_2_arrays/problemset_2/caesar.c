@@ -28,13 +28,14 @@ int main(int argc, string argv[])
 
     else if (k >= 27)
     {
-        printf("Cycling through alphabet...\n");
         k = k % 26;
     }
-    printf("K value: %i\n", k);
     plaintext = getPlain();
     ciphertext = implementCipher(k, plaintext);
-    // printf("%c\n", ciphertext);
+    string ciphertext = cipherImplement;
+    printf("ciphertext: %s", ciphertext);
+    printf("\n");
+    return 0;
 }
 
 
@@ -63,11 +64,8 @@ string implementCipher(int k, string plaintext)
             // If the new ascii value wraps around the alphabet, subtract 26  to get correct letter and add it to the ciphertext
             if ((newInt > 90 && newInt <= 97) || newInt > 122)
             {
-                // printf("Character out of bounds\n");
                 int reducedInt = newInt - 26;
-                // printf("New int: %i\n", reducedInt);
                 char reducedChar = reducedInt;
-                printf("New char: %c\n", reducedChar);
                 cipherImplement[cipherIndex] = reducedChar;
                 cipherIndex++;
             }
@@ -76,15 +74,10 @@ string implementCipher(int k, string plaintext)
             else
             {
             char newLetter = newInt;
-            // printf("Character in bounds\n");
-            // printf("New int: %i\n", (newInt));
-            printf("New char: %c\n", newLetter);
             cipherImplement[cipherIndex] = newLetter;
             cipherIndex++;
             }
         }
     }
-    // Return ciphertext
-    // return cipherImplement;
-    return 0;
+    return cipherImplement;
 }
