@@ -50,14 +50,22 @@ string implementCipher(int k, string plaintext)
     printf("Executing cipher on \"%s\"...\n", plaintext);
     for (int i = 0; i < strlen(plaintext); i++)
     {
-        char letter = plaintext[i];
         int letterInt = plaintext[i];
-        printf("Char: %c\nInt: %i\n", letter, letterInt);
+        // printf("Char: %c\nInt: %i\n", letter, letterInt);
         if ((letterInt >= 65 && letterInt <= 90) || (letterInt >= 97 && letterInt <= 122))
         {
-            char newLetter = letterInt + k;
-            printf("New int: %i\n", (letterInt + k));
-            printf("New char: %c\n", newLetter); 
+            int newInt = letterInt + k;
+            if (newInt > 90 && newInt < 97)
+            {
+                printf("Uppercase character out of bounds\n");
+            }
+            else if (newInt > 122)
+            {
+                printf("Lowercase character out of bounds\n");
+            }
+            char newLetter = newInt;            
+            printf("New int: %i\n", (newInt));
+            printf("New char: %c\n", newLetter);
         }
     }
     // printf("\n");
