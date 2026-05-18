@@ -31,9 +31,8 @@ int main(int argc, string argv[])
         k = k % 26;
     }
     plaintext = getPlain();
-    ciphertext = implementCipher(k, plaintext);
-    string ciphertext = cipherImplement;
-    printf("ciphertext: %s", ciphertext);
+    string output = implementCipher(k, plaintext);
+    printf("ciphertext: %s", output);
     printf("\n");
     return 0;
 }
@@ -48,19 +47,19 @@ string getPlain()
 
 
 // Function to create cyphertext
-string implementCipher(int k, string plaintext)
+string implementCipher(int key, string input)
 {
     // Iterate over each character in plaintext string
-    for (int i = 0; i < strlen(plaintext); i++)
+    for (int i = 0; i < strlen(input); i++)
     {
         // Convert character to int to check if it matches an ascii number
-        int letterInt = plaintext[i];
+        int letterInt = input[i];
         if ((letterInt >= 65 && letterInt <= 90) || (letterInt >= 97 && letterInt <= 122))
         {
             // Add k value to letter ascii number
-            int newInt = letterInt + k;
+            int newInt = letterInt + key;
             // printf("Old int: %i\nNew int: %i\n",letterInt, newInt);
-            
+
             // If the new ascii value wraps around the alphabet, subtract 26  to get correct letter and add it to the ciphertext
             if ((newInt > 90 && newInt <= 97) || newInt > 122)
             {
