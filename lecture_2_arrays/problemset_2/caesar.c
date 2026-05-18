@@ -55,17 +55,22 @@ string implementCipher(int k, string plaintext)
         if ((letterInt >= 65 && letterInt <= 90) || (letterInt >= 97 && letterInt <= 122))
         {
             int newInt = letterInt + k;
-            if (newInt > 90 && newInt < 97)
+            printf("Old int: %i\nNew int: %i\n",letterInt, newInt);
+            if ((newInt > 90 && newInt < 96) || newInt > 122)
             {
-                printf("Uppercase character out of bounds\n");
+                printf("Character out of bounds\n");
+                int reducedInt = newInt - 26;
+                printf("New int: %i\n", reducedInt);
+                char reducedChar = reducedInt;
+                printf("New char: %c\n", reducedChar);
             }
-            else if (newInt > 122)
+
+            else
             {
-                printf("Lowercase character out of bounds\n");
-            }
-            char newLetter = newInt;            
+            char newLetter = newInt;
             printf("New int: %i\n", (newInt));
             printf("New char: %c\n", newLetter);
+            }
         }
     }
     // printf("\n");
