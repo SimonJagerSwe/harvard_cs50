@@ -32,10 +32,10 @@ int main(int argc, string argv[])
         }
         else if (k >= 27)
         {
-            printf("Reduced value: %i\n", (k % 26));
+            int reducedK = k % 26; 
+            printf("Reduced value: %i\n", reducedK);
         }
     }
-
 
     // Quit gracefully if input is invalid
     else
@@ -43,11 +43,16 @@ int main(int argc, string argv[])
         printf("%s", wrongInput);
         return 1;
     }
+    plaintext = getPlain();
+    printf("Plaintext: %s\n", plaintext);
 }
 
 // Function to get plaintext string and k value
-// string getPlain()
-
+string getPlain()
+{
+    plaintext = get_string("plaintext: ");
+    return plaintext;
+}
 
 // Calculate added k value to letter p[i]
 
