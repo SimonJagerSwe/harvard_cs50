@@ -7,6 +7,7 @@
 
 // Functions
 string getPlain();
+string implementCipher(int k, string plaintext);
 
 // Variables
 int k;
@@ -30,7 +31,8 @@ int main(int argc, string argv[])
     }
     printf("K value: %i\n", k);
     plaintext = getPlain();
-    printf("Received plaintext: %s\n", plaintext);    
+    // printf("Received plaintext: %s\n", plaintext);
+    ciphertext = implementCipher(k, plaintext);
 }
 
 
@@ -39,4 +41,12 @@ string getPlain()
 {
     string input = get_string("plaintext: ");
     return input;
+}
+
+
+// Function to create cyphertext
+string implementCipher(int k, string plaintext)
+{
+    printf("Executing cipher on \"%s\"...\n", plaintext);
+    return 0;
 }
