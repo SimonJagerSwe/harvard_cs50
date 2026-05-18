@@ -9,6 +9,9 @@ string getPlain();
 
 // Variables
 int k;
+string plaintext;
+string ciphertext;
+string wrongInput = "Usage: ./caesar key\n";
 
 
 // Main function
@@ -20,14 +23,22 @@ int main(int argc, string argv[])
         printf("Argument taken: %s\n", argv[1]);
         k = strtol(argv[1], NULL, 10);
         printf("K value: %i\n", k);
+        if (k <= 0)
+        {
+            printf("%s", wrongInput);
+        }
     }
+
+
+    // Quit gracefully if input is invalid
     else
     {
-        printf("Usage: ./caesar key\n");
+        printf("%s", wrongInput);
     }
 }
 
 // Function to get plaintext string and k value
+// string getPlain()
 
 
 // Calculate added k value to letter p[i]
