@@ -1,5 +1,6 @@
 // ########## Problemset 2 - Caesar ########## //
 #include <cs50.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,36 +11,37 @@ string getPlain();
 string implementCipher(int k, string plaintext);
 
 // Variables
+string argumentError = "Usage: ./caesar key";
 int k;
 int cipherIndex = 0;
 string plaintext;
 char cipherImplement[128];
-string ciphertext;
 
 // Main function
-int main(int argc, string argv[])
-{
-    printf("%s\n", argv[1]);
-    for (int i = 0; i < strlen(argv); i++)
-    {
-        printf("%s\n", argv[i]);
-    }
+int main(int argc, char *argv[])
+{    
+    // Check cli argument length, exit if not 2
     if (argc != 2)
     {
-        printf("Usage: ./caesar key\n");
+        printf("%s\n", argumentError);
         return 1;
     }
-    
-    k = strtol(argv[1], NULL, 10);
-    // for (int i = 0; i < strlen(argv); i++)
-    // {
-    //    printf("%s\n", argv[i]);
-    // }
 
-    printf("%i\n", k);
+    // Check if cli argument contains non-numeric characters and terminate if it does
+    for (int i = 0; i < strlen(argv[1]); i++)
+    {
+        int testA = argv[1][i]; 
+        if (testA < 48 || testA > 57)
+        {
+            return 1;
+        }
+    }
+
+    k = strtol(argv[1], NULL, 10);
+
     if (k <= 0)
     {
-        printf("Usage: ./caesar key\n");
+        printf("%s\n", argumentError);
         return 1;
     }
 
@@ -49,7 +51,7 @@ int main(int argc, string argv[])
     }
     plaintext = getPlain();
     string output = implementCipher(k, plaintext);
-    printf("ciphertext: %sn", output);
+    printf("ciphertext: %s\n", output);
     return 0;
 }
 
