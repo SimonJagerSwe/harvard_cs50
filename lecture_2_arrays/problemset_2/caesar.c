@@ -6,10 +6,12 @@
 
 
 // Functions
-
+string getPlain();
 
 // Variables
 int k;
+string plaintext;
+string ciphertext;
 
 // Main function
 int main(int argc, string argv[])
@@ -20,5 +22,16 @@ int main(int argc, string argv[])
         printf("Usage: ./caesar key\n");
         return 1;
     }
+    
     printf("K value: %i\n", k);
+    plaintext = getPlain();
+    printf("Received plaintext: %s\n", plaintext);    
+}
+
+
+// Function to get plaintext
+string getPlain()
+{
+    string input = get_string("plaintext: \n");
+    return input;
 }
