@@ -22,7 +22,12 @@ int main(int argc, string argv[])
         printf("Usage: ./caesar key\n");
         return 1;
     }
-    
+
+    else if (k >= 27)
+    {
+        printf("Cycling through alphabet...\n");
+        k = k % 26;
+    }
     printf("K value: %i\n", k);
     plaintext = getPlain();
     printf("Received plaintext: %s\n", plaintext);    
@@ -32,6 +37,6 @@ int main(int argc, string argv[])
 // Function to get plaintext
 string getPlain()
 {
-    string input = get_string("plaintext: \n");
+    string input = get_string("plaintext: ");
     return input;
 }
