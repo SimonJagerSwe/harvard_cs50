@@ -58,14 +58,14 @@ string implementCipher(int k, string plaintext)
         {
             // Add k value to letter ascii number
             int newInt = letterInt + k;
-            printf("Old int: %i\nNew int: %i\n",letterInt, newInt);
+            // printf("Old int: %i\nNew int: %i\n",letterInt, newInt);
             
             // If the new ascii value wraps around the alphabet, subtract 26  to get correct letter and add it to the ciphertext
             if ((newInt > 90 && newInt <= 97) || newInt > 122)
             {
-                printf("Character out of bounds\n");
+                // printf("Character out of bounds\n");
                 int reducedInt = newInt - 26;
-                printf("New int: %i\n", reducedInt);
+                // printf("New int: %i\n", reducedInt);
                 char reducedChar = reducedInt;
                 printf("New char: %c\n", reducedChar);
                 cipherImplement[cipherIndex] = reducedChar;
@@ -76,8 +76,8 @@ string implementCipher(int k, string plaintext)
             else
             {
             char newLetter = newInt;
-            printf("Character in bounds\n");
-            printf("New int: %i\n", (newInt));
+            // printf("Character in bounds\n");
+            // printf("New int: %i\n", (newInt));
             printf("New char: %c\n", newLetter);
             cipherImplement[cipherIndex] = newLetter;
             cipherIndex++;
