@@ -5,7 +5,7 @@
 #include <string.h>
 
 // Functions
-
+string getPlain();
 
 // Variables
 int k;
@@ -14,13 +14,16 @@ int k;
 // Main function
 int main(int argc, string argv[])
 {
-    if (argc != 2)
+    // Check argument length
+    if (argc == 2)
     {
-        printf("Usage: ./caesar key\n");
+        printf("Argument taken: %s\n", argv[1]);
+        k = strtol(argv[1], NULL, 10);
+        printf("K value: %i\n", k);
     }
     else
     {
-        printf("K value: %s\n", argv[1]);
+        printf("Usage: ./caesar key\n");
     }
 }
 
