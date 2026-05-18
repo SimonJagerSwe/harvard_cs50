@@ -28,6 +28,7 @@ int main(int argc, string argv[])
         if (k <= 0)
         {
             printf("%s", wrongInput);
+            return 1;
         }
         else if (k >= 27)
         {
@@ -40,6 +41,7 @@ int main(int argc, string argv[])
     else
     {
         printf("%s", wrongInput);
+        return 1;
     }
 }
 
