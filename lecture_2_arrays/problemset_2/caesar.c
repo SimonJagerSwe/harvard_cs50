@@ -48,5 +48,9 @@ string getPlain()
 string implementCipher(int k, string plaintext)
 {
     printf("Executing cipher on \"%s\"...\n", plaintext);
+    for (int i = 0; i < strlen(plaintext); i++)
+    {
+        printf("%c\n", plaintext[i]);
+    }
     return 0;
 }
