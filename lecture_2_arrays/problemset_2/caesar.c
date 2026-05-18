@@ -12,6 +12,7 @@ string implementCipher(int k, string plaintext);
 // Variables
 int k;
 string plaintext;
+char cipherImplement[];
 string ciphertext;
 
 // Main function
@@ -31,7 +32,6 @@ int main(int argc, string argv[])
     }
     printf("K value: %i\n", k);
     plaintext = getPlain();
-    // printf("Received plaintext: %s\n", plaintext);
     ciphertext = implementCipher(k, plaintext);
 }
 
@@ -50,7 +50,14 @@ string implementCipher(int k, string plaintext)
     printf("Executing cipher on \"%s\"...\n", plaintext);
     for (int i = 0; i < strlen(plaintext); i++)
     {
-        printf("%c\n", plaintext[i]);
+        char letter = plaintext[i];
+        int letterInt = plaintext[i];
+        printf("Char: %c\nInt: %i\n", letter, letterInt);
+        if ((letterInt >= 65 && letterInt <= 90) || (letterInt >= 97 && letterInt <= 122))
+        {
+            printf("%i\n", (letterInt + k));
+        }
     }
+    // printf("\n");
     return 0;
 }
