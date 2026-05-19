@@ -50,18 +50,19 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+
     // Iterate over alphabet array to print test confirmation
-    for (int i = 0; i < 26; i++)
-    {
-        printf("Original char: %c | Subsituted char: %c\n", alphabet[i][0], alphabet[i][1]);
-    }
+    // for (int i = 0; i < 26; i++)
+    // {
+    //     printf("Original char: %c | Subsituted char: %c\n", alphabet[i][0], alphabet[i][1]);
+    // }
 
     // Get plaintext string after confirming key validity
-    plaintext = getPlain();
+    // plaintext = getPlain(); *
     // printf("Received plaintext: %s\n", plaintext);
     
     // Call cipher application
-    ciphertext[127] = applyCipher(plaintext);
+    // ciphertext[127] = applyCipher(plaintext); *
     // for (int i = 0; i < strlen(ciphertext); i++)
     // {
     //     printf("%c", ciphertext[i]);
@@ -111,8 +112,36 @@ int keyChecker(string keyArg)
         else
         {
             return 1;
-        }        
+        }
     }
+
+    // Check key for duplicates
+    for (int i = 0; i < strlen(keyArg); i++)
+    {
+        // printf("%c\n", keyArg[i]);
+        for (int j = 0; j < strlen(keyArg); j++)
+        {
+            // printf("%c\n", keyArg[j]);
+
+            if ((int)keyArg[i] >= 65 && (int)keyArg[i] <= 90)
+            {
+                if ((int)keyArg[i] == (int)keyArg[j] || (int)keyArg[i] + 32 == (int)keyArg[j])
+                {
+                    return 1;
+                }
+            }
+
+            else if ((int)keyArg[i] >= 97 && (int)keyArg[i] <= 122)
+            {
+                if ((int)keyArg[i] == (int)keyArg[j] || (int)keyArg[i] - 32 == (int)keyArg[j])
+                {
+                    return 1;
+                }
+            }
+            
+        }
+    }
+
     return 0;
 }
 
