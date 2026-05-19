@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     if (argc != 2)
     {
         invalidInput(0);
+        return 1;
     }
     string argument = argv[1];
     printf("%s\n", argument);
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     if (strlen(argument) != 26)
     {
         invalidInput(1);
+        return 1;
     }
 }
 
@@ -42,11 +44,9 @@ int invalidInput(int code)
     if (code == 0)
     {
         printf("Usage: ./substitution key\n");
-        return 1;
     }
     else if (code == 1)
     {
         printf("Key must contain 26 characters\n");
-        return 1;
     }
 }
