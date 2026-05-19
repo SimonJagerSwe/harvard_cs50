@@ -133,7 +133,6 @@ char applyCipher(string plaintext)
         int charInt = plaintext[i];
         if (charInt >= 65 && charInt <=90)
         {
-            // printf("Uppercase character detected: %c\n", character);
             for (int i = 0; i < 26; i++)
             {
                 if (character == alphabet[i][0])
@@ -144,18 +143,28 @@ char applyCipher(string plaintext)
                 }
             }
         }
+
         else if (charInt >= 97 && charInt <= 122)
         {
-            char lowerChar = charInt - 32;
-            printf("Lowercase cipher character: %c | Uppercase equivalen: %c\n", character, lowerChar);
+            char upperChar = charInt - 32;
             for (int i = 0; i < 26; i++)
             {
-                if (lowerChar == alphabet[i][0])
+                if (upperChar == alphabet[i][0])
                 {
-
+                    printf("Uppercase version present in alphabet array\n");
+                    printf("Uppercase cipher char: %c\n", alphabet[i][1]);
+                    char lowerChar = (alphabet[i][1]) + 32;
+                    printf("Lowercase cipher char: %c\n", lowerChar);
+                    ciphertext[ciphertextIndex] = lowerChar;
+                    ciphertextIndex++;
                 }
             }
+        }
 
+        else
+        {
+            ciphertext[ciphertextIndex] = character;
+            ciphertextIndex++;
         }
     }
     return ciphertext[127];
@@ -169,9 +178,11 @@ int invalidInput(int code)
     {
         printf("Usage: ./substitution key\n");
     }
+
     else if (code == 1)
     {
         printf("Key must contain 26 characters\n");
     }
+
     return 0;
 }
