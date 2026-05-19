@@ -8,6 +8,7 @@
 // Functions
 int invalidInput(int code);
 int keyChecker(string keyArg);
+string getPlain(string keyArg);
 
 // Variables
 char alphabet[26][2] = {
@@ -36,11 +37,11 @@ int main(int argc, char *argv[])
     // Convert key to string
     string keyArg = argv[1];
     printf("%s\n", keyArg);
-    printf("%i\n", strlen(keyArg));
+    // printf("%i\n", strlen(keyArg));
 
     // Check key for status code, terminate if keyStatus is 1
     keyStatus = keyChecker(keyArg);
-    printf("Key status: %i\n", keyStatus);
+    // printf("Key status: %i\n", keyStatus);
     if (keyStatus == 1)
     {
         invalidInput(0);
@@ -50,8 +51,11 @@ int main(int argc, char *argv[])
     // Iterate over alphabet array to print test confirmation
     for (int i = 0; i < 26; i++)
     {
-        printf("Original char: %c\nSubsituted char: %c\n", alphabet[i][0], alphabet[i][1]);
+        printf("Original char: %c | Subsituted char: %c\n", alphabet[i][0], alphabet[i][1]);
     }
+
+    // Get plaintext string after confirming key validity
+
 }
 
 // Check key validity
