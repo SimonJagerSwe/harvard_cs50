@@ -46,6 +46,8 @@ int main(int argc, char *argv[])
         invalidInput(0);
         return 1;
     }
+
+    // Iterate over alphabet array to print test confirmation
     for (int i = 0; i < 26; i++)
     {
         printf("Original char: %c\nSubsituted char: %c\n", alphabet[i][0], alphabet[i][1]);
@@ -69,8 +71,8 @@ int keyChecker(string keyArg)
         // If uppercase, add to alphabet array
         if (keyInt >= 65 && keyInt <= 90)
         {
-            printf("Character #%i: %c\nUppercase character, adding to alphabet array\n", keyIndex, keyInt);
-            keyIndex++;
+            // printf("Character #%i: %c\nUppercase character, adding to alphabet array\n", keyIndex, keyInt);
+            // keyIndex++;
             char keyChar = keyInt;
             alphabet[alphabetIndex][1] = keyChar;
             alphabetIndex++;
@@ -79,14 +81,13 @@ int keyChecker(string keyArg)
         // If lowercase, turn to uppercase by subtracting 32 from key ASCII value, then add to alphabet array
         else if (keyInt >= 97 && keyInt <= 122)
         {
-            printf("Character #%i: %c\nLowercase character detected, turning to uppercase...\n", keyIndex, keyInt);
+            // printf("Character #%i: %c\nLowercase character detected, turning to uppercase...\n", keyIndex, keyInt);
             int upperCharInt = keyInt - 32;
-            printf("Upper character: %c, adding to alphabet array\n", upperCharInt);
-            keyIndex++;
+            // printf("Upper character: %c, adding to alphabet array\n", upperCharInt);
+            // keyIndex++;
             char upperChar = upperCharInt;
             alphabet[alphabetIndex][1] = upperChar;
             alphabetIndex++;
-
         }
 
         // Terminate if invalid character is present
