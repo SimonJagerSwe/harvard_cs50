@@ -62,12 +62,12 @@ int main(int argc, char *argv[])
     
     // Call cipher application
     ciphertext[127] = applyCipher(plaintext);
-    for (int i = 0; i < strlen(ciphertext); i++)
-    {
-        printf("%c", ciphertext[i]);
-    }
-    printf("\n");
-    // printf("ciphertext: \n");
+    // for (int i = 0; i < strlen(ciphertext); i++)
+    // {
+    //     printf("%c", ciphertext[i]);
+    // }
+    // printf("\n");
+    printf("ciphertext: %s\n", ciphertext);
     return 0;
 }
 
