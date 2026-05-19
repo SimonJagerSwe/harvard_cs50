@@ -7,6 +7,7 @@
 
 // Functions
 int invalidInput(int code);
+int keyChecker(string keyArg);
 
 // Variables
 char alphabet[26][2] = {
@@ -19,6 +20,7 @@ char alphabet[26][2] = {
     {'X', }, {'Y', }, {'Z', }
 };
 int alphabetIndex = 0;
+int keyStatus;
 int keyIndex = 1;
 
 // Main function
@@ -36,6 +38,18 @@ int main(int argc, char *argv[])
     printf("%s\n", keyArg);
     printf("%i\n", strlen(keyArg));
 
+    keyStatus = keyChecker(keyArg);
+    printf("Key status: %i\n", keyStatus);
+    if (keyStatus == 1)
+    {
+        invalidInput(0);
+        return 1;
+    }
+}
+
+// Check key validity
+int keyChecker(string keyArg)
+{    
     // Check length of key
     if (strlen(keyArg) != 26)
     {
@@ -43,15 +57,19 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Check if letters are lower or uppercase, if lower, convert to upper by subtracting 32 from character's ascii value
+    // Check string character case is upper, lower or invalid
     for (int i = 0; i < strlen(keyArg); i++)
     {
         int keyInt = keyArg[i];
+
+        // If uppercase, add to alphabet array
         if (keyInt >= 65 && keyInt <= 90)
         {
             printf("Character #%i: %c\nUppercase character, adding to alphabet array\n", keyIndex, keyInt);
             keyIndex++;
         }
+
+        // If lowercase, turn to uppercase by subtracting 32 from key ASCII value, then add to alphabet array
         else if (keyInt >= 97 && keyInt <= 122)
         {
             printf("Character #%i: %c\nLowercase character detected, turning to uppercase...\n", keyIndex, keyInt);
@@ -59,7 +77,14 @@ int main(int argc, char *argv[])
             printf("Upper character: %c, adding to alphabet array\n", upperCharInt);
             keyIndex++;
         }
+
+        // Terminate if invalid character is present
+        else
+        {
+            return 1;
+        }        
     }
+    return 0;
 }
 
 // Get plaintext
