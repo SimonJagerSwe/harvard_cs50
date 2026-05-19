@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
     printf("%s\n", keyArg);
     printf("%i\n", strlen(keyArg));
 
+    // Check key for status code, terminate if keyStatus is 1
     keyStatus = keyChecker(keyArg);
     printf("Key status: %i\n", keyStatus);
     if (keyStatus == 1)
@@ -57,7 +58,6 @@ int keyChecker(string keyArg)
     // Check length of key
     if (strlen(keyArg) != 26)
     {
-        invalidInput(1);
         return 1;
     }
 
