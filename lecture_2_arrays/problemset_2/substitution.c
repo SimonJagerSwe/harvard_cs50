@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
     // Get plaintext string after confirming key validity
     plaintext = getPlain();
-    printf("Received plaintext: %s\n", plaintext);
+    // printf("Received plaintext: %s\n", plaintext);
     
     // Call cipher application
     ciphertext[127] = applyCipher(plaintext);
@@ -131,19 +131,31 @@ char applyCipher(string plaintext)
     {
         char character = plaintext[i];
         int charInt = plaintext[i];
-        // printf("Character: %c | Character int: %i\n", character, charInt);
         if (charInt >= 65 && charInt <=90)
         {
-            printf("Uppercase character detected: %c\n", character);
+            // printf("Uppercase character detected: %c\n", character);
             for (int i = 0; i < 26; i++)
             {
                 if (character == alphabet[i][0])
                 {
-                    printf("Plaintext character: %c | ciphertext character: %c\n", character, alphabet[i][1]);
+                    printf("Uppercase plaintext character: %c | ciphertext character: %c\n", character, alphabet[i][1]);
                     ciphertext[ciphertextIndex] = alphabet[i][1];
                     ciphertextIndex++;
                 }
             }
+        }
+        else if (charInt >= 97 && charInt <= 122)
+        {
+            char lowerChar = charInt - 32;
+            printf("Lowercase cipher character: %c | Uppercase equivalen: %c\n", character, lowerChar);
+            for (int i = 0; i < 26; i++)
+            {
+                if (lowerChar == alphabet[i][0])
+                {
+
+                }
+            }
+
         }
     }
     return ciphertext[127];
