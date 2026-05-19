@@ -25,7 +25,8 @@ int alphabetIndex = 0;
 int keyStatus;
 int keyIndex = 1;
 string plaintext;
-char ciphertext;
+char ciphertext[128];
+int ciphertextIndex = 0;
 
 // ########## Main function ########## //
 int main(int argc, char *argv[])
@@ -40,11 +41,9 @@ int main(int argc, char *argv[])
     // Convert key to string
     string keyArg = argv[1];
     printf("%s\n", keyArg);
-    // printf("%i\n", strlen(keyArg));
 
     // Check key for status code, terminate if keyStatus is 1
     keyStatus = keyChecker(keyArg);
-    // printf("Key status: %i\n", keyStatus);
     if (keyStatus == 1)
     {
         invalidInput(0);
@@ -62,8 +61,13 @@ int main(int argc, char *argv[])
     printf("Received plaintext: %s\n", plaintext);
     
     // Call cipher application
-    ciphertext = applyCipher(plaintext);
-    printf("Ciphertext: \n");
+    ciphertext[127] = applyCipher(plaintext);
+    for (int i = 0; i < strlen(ciphertext); i++)
+    {
+        printf("%c", ciphertext[i]);
+    }
+    printf("\n");
+    // printf("ciphertext: \n");
     return 0;
 }
 
@@ -127,14 +131,22 @@ char applyCipher(string plaintext)
     {
         char character = plaintext[i];
         int charInt = plaintext[i];
-        printf("Character: %c | Character int: %i\n", character, charInt);
+        // printf("Character: %c | Character int: %i\n", character, charInt);
         if (charInt >= 65 && charInt <=90)
         {
             printf("Uppercase character detected: %c\n", character);
-
+            for (int i = 0; i < 26; i++)
+            {
+                if (character == alphabet[i][0])
+                {
+                    printf("Plaintext character: %c | ciphertext character: %c\n", character, alphabet[i][1]);
+                    ciphertext[ciphertextIndex] = alphabet[i][1];
+                    ciphertextIndex++;
+                }
+            }
         }
     }
-    return 0;
+    return ciphertext[127];
 }
 
 
