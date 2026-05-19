@@ -9,6 +9,7 @@
 int invalidInput(int code);
 int keyChecker(string keyArg);
 string getPlain();
+char applyCipher(string plaintext);
 
 // Variables
 char alphabet[26][2] = {
@@ -24,8 +25,9 @@ int alphabetIndex = 0;
 int keyStatus;
 int keyIndex = 1;
 string plaintext;
+char ciphertext;
 
-// Main function
+// ########## Main function ########## //
 int main(int argc, char *argv[])
 {
     // Check number of arguments, if not 2, exit program
@@ -57,8 +59,11 @@ int main(int argc, char *argv[])
 
     // Get plaintext string after confirming key validity
     plaintext = getPlain();
-    // plaintext = get_string("plaintext: ");
     printf("Received plaintext: %s\n", plaintext);
+    
+    // Call cipher application
+    ciphertext = applyCipher(plaintext);
+    printf("Ciphertext: \n");
     return 0;
 }
 
@@ -115,9 +120,22 @@ string getPlain()
 }
 
 // Apply cipher
+char applyCipher(string plaintext)
+{
+    printf("%s\n", plaintext);
+    for (int i = 0; i < strlen(plaintext); i++)
+    {
+        char character = plaintext[i];
+        int charInt = plaintext[i];
+        printf("Character: %c | Character int: %i\n", character, charInt);
+        if (charInt >= 65 && charInt <=90)
+        {
+            printf("Uppercase character detected: %c\n", character);
 
-
-// Return ciphertext
+        }
+    }
+    return 0;
+}
 
 
 // Exit on invalid argument
