@@ -18,6 +18,8 @@ char alphabet[26][2] = {
     {'U', }, {'V', }, {'W', }, 
     {'X', }, {'Y', }, {'Z', }
 };
+int alphabetIndex = 0;
+int keyIndex = 1;
 
 // Main function
 int main(int argc, char *argv[])
@@ -41,10 +43,22 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    // Check if letters are lower or uppercase, if lower, convert to upper by subtracting 32 from character's ascii value
     for (int i = 0; i < strlen(keyArg); i++)
     {
-        int keyChar = keyArg[i];
-        printf("%i\n", keyChar);
+        int keyInt = keyArg[i];
+        if (keyInt >= 65 && keyInt <= 90)
+        {
+            printf("Character #%i: %c\nUppercase character, adding to alphabet array\n", keyIndex, keyInt);
+            keyIndex++;
+        }
+        else if (keyInt >= 97 && keyInt <= 122)
+        {
+            printf("Character #%i: %c\nLowercase character detected, turning to uppercase...\n", keyIndex, keyInt);
+            int upperCharInt = keyInt - 32;
+            printf("Upper character: %c, adding to alphabet array\n", upperCharInt);
+            keyIndex++;
+        }
     }
 }
 
