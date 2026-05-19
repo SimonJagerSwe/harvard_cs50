@@ -8,7 +8,7 @@
 // Functions
 int invalidInput(int code);
 int keyChecker(string keyArg);
-string getPlain(string keyArg);
+string getPlain();
 
 // Variables
 char alphabet[26][2] = {
@@ -23,6 +23,7 @@ char alphabet[26][2] = {
 int alphabetIndex = 0;
 int keyStatus;
 int keyIndex = 1;
+string plaintext;
 
 // Main function
 int main(int argc, char *argv[])
@@ -55,7 +56,10 @@ int main(int argc, char *argv[])
     }
 
     // Get plaintext string after confirming key validity
-
+    plaintext = getPlain();
+    // plaintext = get_string("plaintext: ");
+    printf("Received plaintext: %s\n", plaintext);
+    return 0;
 }
 
 // Check key validity
@@ -104,7 +108,11 @@ int keyChecker(string keyArg)
 }
 
 // Get plaintext
-
+string getPlain()
+{
+    string plain = get_string("plaintext: ");
+    return plain;
+}
 
 // Apply cipher
 
@@ -123,4 +131,5 @@ int invalidInput(int code)
     {
         printf("Key must contain 26 characters\n");
     }
+    return 0;
 }
