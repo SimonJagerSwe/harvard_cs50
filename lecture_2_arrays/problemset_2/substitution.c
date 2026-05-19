@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 
     // Convert key to string
     string keyArg = argv[1];
-    printf("%s\n", keyArg);
+    // printf("%s\n", keyArg);
 
     // Check key for status code, terminate if keyStatus is 1
     keyStatus = keyChecker(keyArg);
@@ -59,7 +59,6 @@ int main(int argc, char *argv[])
 
     // Get plaintext string after confirming key validity
     // plaintext = getPlain(); *
-    // printf("Received plaintext: %s\n", plaintext);
     
     // Call cipher application
     // ciphertext[127] = applyCipher(plaintext); *
@@ -67,7 +66,6 @@ int main(int argc, char *argv[])
     // {
     //     printf("%c", ciphertext[i]);
     // }
-    // printf("\n");
     printf("ciphertext: %s\n", ciphertext);
     return 0;
 }
@@ -114,34 +112,16 @@ int keyChecker(string keyArg)
             return 1;
         }
     }
-
     // Check key for duplicates
     for (int i = 0; i < strlen(keyArg); i++)
     {
-        // printf("%c\n", keyArg[i]);
+        // printf("%c", keyArg[i]);
         for (int j = 0; j < strlen(keyArg); j++)
         {
-            // printf("%c\n", keyArg[j]);
-
-            if ((int)keyArg[i] >= 65 && (int)keyArg[i] <= 90)
-            {
-                if ((int)keyArg[i] == (int)keyArg[j] || (int)keyArg[i] + 32 == (int)keyArg[j])
-                {
-                    return 1;
-                }
-            }
-
-            else if ((int)keyArg[i] >= 97 && (int)keyArg[i] <= 122)
-            {
-                if ((int)keyArg[i] == (int)keyArg[j] || (int)keyArg[i] - 32 == (int)keyArg[j])
-                {
-                    return 1;
-                }
-            }
-            
+            printf("Key A: %c | Key B: %c\n", keyArg[i], keyArg[j]);
         }
+        printf("\n");
     }
-
     return 0;
 }
 
