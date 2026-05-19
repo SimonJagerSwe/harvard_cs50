@@ -1,10 +1,11 @@
 // ########## Problemset 2 - Substitution ########## //
-#include<cs50.h>
-#include<stdio.h>
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
 
 
 // Functions
-int invalidInput();
+int invalidInput(int code);
 
 // Variables
 
@@ -14,7 +15,15 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        invalidInput();
+        invalidInput(0);
+    }
+    string argument = argv[1];
+    printf("%s\n", argument);
+    printf("%i\n", strlen(argument));
+
+    if (strlen(argument) != 26)
+    {
+        invalidInput(1);
     }
 }
 
@@ -28,8 +37,16 @@ int main(int argc, char *argv[])
 
 
 // Exit on invalid argument
-int invalidInput()
+int invalidInput(int code)
 {
-    printf("Usage: ./substitution key\n");
-    return 1;
+    if (code == 0)
+    {
+        printf("Usage: ./substitution key\n");
+        return 1;
+    }
+    else if (code == 1)
+    {
+        printf("Key must contain 26 characters\n");
+        return 1;
+    }
 }
