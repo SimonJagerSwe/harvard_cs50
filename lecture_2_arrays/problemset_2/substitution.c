@@ -45,6 +45,10 @@ int main(int argc, char *argv[])
         invalidInput(0);
         return 1;
     }
+    for (int i = 0; i < 26; i++)
+    {
+        printf("Original char: %c\nSubsituted char: %c\n", alphabet[i][0], alphabet[i][1]);
+    }
 }
 
 // Check key validity
@@ -67,6 +71,9 @@ int keyChecker(string keyArg)
         {
             printf("Character #%i: %c\nUppercase character, adding to alphabet array\n", keyIndex, keyInt);
             keyIndex++;
+            char keyChar = keyInt;
+            alphabet[alphabetIndex][1] = keyChar;
+            alphabetIndex++;
         }
 
         // If lowercase, turn to uppercase by subtracting 32 from key ASCII value, then add to alphabet array
@@ -76,6 +83,10 @@ int keyChecker(string keyArg)
             int upperCharInt = keyInt - 32;
             printf("Upper character: %c, adding to alphabet array\n", upperCharInt);
             keyIndex++;
+            char upperChar = upperCharInt;
+            alphabet[alphabetIndex][1] = upperChar;
+            alphabetIndex++;
+
         }
 
         // Terminate if invalid character is present
