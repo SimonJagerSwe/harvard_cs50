@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 // Functions
 int invalidInput(int code);
 int keyChecker(string keyArg);
@@ -18,7 +17,7 @@ char alphabet[26][2] = {
     {'I', }, {'J', }, {'K', }, {'L', },
     {'M', }, {'N', }, {'O', }, {'P', },
     {'Q', }, {'R', }, {'S', }, {'T', },
-    {'U', }, {'V', }, {'W', }, 
+    {'U', }, {'V', }, {'W', },
     {'X', }, {'Y', }, {'Z', }
 };
 int alphabetIndex = 0;
@@ -40,7 +39,6 @@ int main(int argc, char *argv[])
 
     // Convert key to string
     string keyArg = argv[1];
-    // printf("%s\n", keyArg);
 
     // Check key for status code, terminate if keyStatus is 1
     keyStatus = keyChecker(keyArg);
@@ -50,29 +48,18 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-
-    // Iterate over alphabet array to print test confirmation
-    // for (int i = 0; i < 26; i++)
-    // {
-    //     printf("Original char: %c | Subsituted char: %c\n", alphabet[i][0], alphabet[i][1]);
-    // }
-
     // Get plaintext string after confirming key validity
-    // plaintext = getPlain(); *
-    
+    plaintext = getPlain();
+
     // Call cipher application
-    // ciphertext[127] = applyCipher(plaintext); *
-    // for (int i = 0; i < strlen(ciphertext); i++)
-    // {
-    //     printf("%c", ciphertext[i]);
-    // }
+    ciphertext[127] = applyCipher(plaintext);
     printf("ciphertext: %s\n", ciphertext);
     return 0;
 }
 
 // Check key validity
 int keyChecker(string keyArg)
-{    
+{
     // Check length of key
     if (strlen(keyArg) != 26)
     {
@@ -87,8 +74,6 @@ int keyChecker(string keyArg)
         // If uppercase, add to alphabet array
         if (keyInt >= 65 && keyInt <= 90)
         {
-            // printf("Character #%i: %c\nUppercase character, adding to alphabet array\n", keyIndex, keyInt);
-            // keyIndex++;
             char keyChar = keyInt;
             alphabet[alphabetIndex][1] = keyChar;
             alphabetIndex++;
@@ -97,10 +82,7 @@ int keyChecker(string keyArg)
         // If lowercase, turn to uppercase by subtracting 32 from key ASCII value, then add to alphabet array
         else if (keyInt >= 97 && keyInt <= 122)
         {
-            // printf("Character #%i: %c\nLowercase character detected, turning to uppercase...\n", keyIndex, keyInt);
             int upperCharInt = keyInt - 32;
-            // printf("Upper character: %c, adding to alphabet array\n", upperCharInt);
-            // keyIndex++;
             char upperChar = upperCharInt;
             alphabet[alphabetIndex][1] = upperChar;
             alphabetIndex++;
@@ -112,16 +94,39 @@ int keyChecker(string keyArg)
             return 1;
         }
     }
+
     // Check key for duplicates
     for (int i = 0; i < strlen(keyArg); i++)
     {
-        // printf("%c", keyArg[i]);
-        for (int j = 0; j < strlen(keyArg); j++)
+        int charInt = keyArg[i];
+
+        // Check lowercase version of provided uppercase character
+        if (charInt >= 65 && charInt <= 90)
         {
-            printf("Key A: %c | Key B: %c\n", keyArg[i], keyArg[j]);
+            int charLower = charInt + 32;
+            for (int j = i + 1; j < strlen(keyArg); j++)
+            {
+                if (keyArg[j] == keyArg[i] || keyArg[j] == (char)charLower)
+                {
+                    return 1;
+                }
+            }
         }
-        printf("\n");
+
+        // Check uppercase version of provided lowercase character
+        else
+        {
+            int charUpper = charInt - 32;
+            for (int j = i + 1; j < strlen(keyArg); j++)
+            {
+                if (keyArg[j] == keyArg[i] || keyArg[j] == (char)charUpper)
+                {
+                    return 1;
+                }
+            }
+        }
     }
+
     return 0;
 }
 
@@ -133,52 +138,53 @@ string getPlain()
 }
 
 // Apply cipher
-char applyCipher(string plaintext)
+char applyCipher(string plaintextInput)
 {
-    printf("%s\n", plaintext);
-    for (int i = 0; i < strlen(plaintext); i++)
+    for (int i = 0; i < strlen(plaintextInput); i++)
     {
-        char character = plaintext[i];
-        int charInt = plaintext[i];
+        char plainCharacter = plaintextInput[i];
+        int charInt = plaintextInput[i];
+
+        // Check if the character is uppercase
+        // in which case, switch it to cipher character
         if (charInt >= 65 && charInt <=90)
         {
-            for (int i = 0; i < 26; i++)
+            for (int j = 0; j < 26; j++)
             {
-                if (character == alphabet[i][0])
+                if (plainCharacter == alphabet[j][0])
                 {
-                    printf("Uppercase plaintext character: %c | ciphertext character: %c\n", character, alphabet[i][1]);
-                    ciphertext[ciphertextIndex] = alphabet[i][1];
+                    ciphertext[ciphertextIndex] = alphabet[j][1];
                     ciphertextIndex++;
                 }
             }
         }
 
+        // Check if character is lowercase
+        // in which case convert to upper, find equavalent in alphabet array
+        // find uppercase cipher character and make lowercase
         else if (charInt >= 97 && charInt <= 122)
         {
             char upperChar = charInt - 32;
-            for (int i = 0; i < 26; i++)
+            for (int k = 0; k < 26; k++)
             {
-                if (upperChar == alphabet[i][0])
+                if (upperChar == alphabet[k][0])
                 {
-                    printf("Uppercase version present in alphabet array\n");
-                    printf("Uppercase cipher char: %c\n", alphabet[i][1]);
-                    char lowerChar = (alphabet[i][1]) + 32;
-                    printf("Lowercase cipher char: %c\n", lowerChar);
+                    char lowerChar = (alphabet[k][1]) + 32;
                     ciphertext[ciphertextIndex] = lowerChar;
                     ciphertextIndex++;
                 }
             }
         }
 
+        // If character is not alphabetical, place in ciphertext as is
         else
         {
-            ciphertext[ciphertextIndex] = character;
+            ciphertext[ciphertextIndex] = plainCharacter;
             ciphertextIndex++;
         }
     }
     return ciphertext[127];
 }
-
 
 // Exit on invalid argument
 int invalidInput(int code)
@@ -192,6 +198,5 @@ int invalidInput(int code)
     {
         printf("Key must contain 26 characters\n");
     }
-
     return 0;
 }
