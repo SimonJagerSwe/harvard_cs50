@@ -1,0 +1,43 @@
+sort1 uses: Bubble sort.
+
+How do you know?: Fastest in going through the sorted files. Since [n + 1] is always bigger than [n], no numbers need to be swapped around, and as such only one pass through the file is needed.
+
+sort2 uses: Merge sort.
+
+How do you know?: Fastest in sorting random and reversed files, and only slightly slower than selecton sort in the already sorted files,
+as each of the halved lists is already sorted, it needs to take the sorted file apart and put it back together in the same order without making any changes.
+
+sort3 uses: Selection sort.
+
+How do you know?: On average the middle performing algorithm, except for the sorted files, where it needs to run through each number in the file and compare it to every other number in the file to verify that the list is indeed already sorted.
+
+
+sort1 random10000: 0.230
+sort2 random10000: 0.027
+sort3 random10000: 0.111
+sort1 random5000: 0.059
+sort2 random5000: 0.015
+sort3 random5000: 0.032
+sort1 random50000: 5.900
+sort2 random50000: 0.150
+sort3 random50000: 2.300
+
+sort1 reverse10000: 0.198
+sort2 reverse10000: 0.029
+sort3 reverse10000: 0.114
+sort1 reverse5000: 0.055
+sort2 reverse5000: 0.012
+sort3 reverse5000: 0.035
+sort1 reverse50000: 4.27
+sort2 reverse50000: 0.15
+sort3 reverse50000: 2.31
+
+sort1 sorted10000: 0.029
+sort2 sorted10000: 0.028
+sort3 sorted10000: 0.111
+sort1 sorted5000: 0.012
+sort2 sorted5000: 0.014
+sort3 sorted5000: 0.034
+sort1 sorted50000: 0.140
+sort2 sorted50000: 0.145
+sort3 sorted50000: 2.230
