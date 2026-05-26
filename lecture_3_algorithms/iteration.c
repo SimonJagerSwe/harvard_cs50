@@ -35,6 +35,7 @@ int main(void)
     int height = get_int("Height: ");
 
     draw(height);
+    return 0;
 }
 
 void draw(int n)
