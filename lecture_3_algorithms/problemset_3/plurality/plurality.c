@@ -79,9 +79,55 @@ bool vote(string name)
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-    for (int i = 0; i < candidate_count; i++)
+    int top = 0;
+    string leader;
+    for (int i = 0; i < candidate_count - 1; i++)
     {
-        printf("Candidate: %s | Votes: %i\n", candidates[i].name, candidates[i]. votes);
+        printf("Candidate: %s | Compare: %s\n", candidates[i].name, candidates[i + 1].name);
+        /*printf("Counting votes for %s | Votes: %i\n\n", candidates[i].name, candidates[i].votes); // printf("Candidate: %s | Votes: %i | Max votes: %i | Current leader: %s\n", candidates[i].name, candidates[i].votes, max, leader);
+        if (candidates[i].votes > candidates[i + 1].votes)
+        {
+            leader = candidates[i].name;
+            top = candidates[i].votes;            
+        }
+        else
+        {
+            leader = candidates[i + 1].name;
+            top = candidates[i + 1].votes;
+        }        
+        printf("Leader: %s | Votes: %i\n\n", leader, top);
+
+        for (int j = i + 1; j < candidate_count; j++)
+        {
+            printf("Candidate to compare: %s | Votes: %i\n", candidates[j].name, candidates[j].votes);
+            if (candidates[i].votes > candidates[j].votes)
+            {
+                printf("%s has more votes than %s\n", candidates[i].name, candidates[j].name);
+                leader = candidates[i].name;
+                top = candidates[i].votes;
+                printf("Current leader: %s | Current max votes: %i\n", leader, top);
+            }
+            else
+            {
+                leader = candidates[j].name;
+                top = candidates[j].votes;
+                printf("Current leader: %s | Current max votes: %i\n", leader, top);
+            }
+            printf("\n\n");
+        }
+        if (candidates[i].votes > top)
+        {
+            printf("%s has more votes than %s\n", candidates[i].name, leader);
+            leader = candidates[i].name;
+            top = candidates[i].votes; 
+            printf("Current leader: %s | Current max votes: %i\n", leader, top);           
+        }
+        else
+        {
+            printf("Current leader: %s | Current max votes: %i\n", leader, top);
+        }
+        printf("Winner is %s\n\n", leader);*/
     }
+    // printf("%s\n", leader);
     return;
 }
