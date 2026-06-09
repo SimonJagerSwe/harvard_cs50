@@ -83,18 +83,51 @@ bool vote(string name)
 void print_winner(void)
 {
     // Initialise variables used to temporarily store highest number of votes and leading candidate name
-    int top = 0;
-    string leader;
+    int top = candidates[0].votes;
+    string leader = candidates[0].name;
+    string commaSep = ", ";
+    
 
-    // Iterate over all candidates except last one
-    for (int i = 0; i < candidate_count - 1; i++)
+    // Iterate over all candidates
+    for (int i = 1; i < candidate_count; i++)
     {
-        printf("Candidate for comparing: %s | Candidate votes: %i\n", candidates[i].name, candidates[i].votes);
-        // Iterate over all competing candidates with a higher index than the current candidate
+        string cName = candidates[i].name;
+        int cVotes = candidates[i].votes;
+
+        printf("Candidate for comparing: %s | Candidate votes: %i\n", cName, cVotes);
         for (int j = i + 1; j < candidate_count; j++)
         {
-            printf("Opponent: %s | Opponent votes: %i\n", candidates[j].name, candidates[j].votes);
+            printf("\n");
         }
+        /*if (cVotes < top)
+        {
+            printf("%s has fewer votes than %s\n", cName, leader);
+        }
+        else if (cVotes > top)
+        {
+            leader = cName;
+            top = cVotes;
+            printf("New election leader: %s | leading number of votes: %i\n", leader, top);
+        }
+        else
+        {
+            printf("%s has same number of votes as leader\n", cName);
+            printf("Comp result: %i\n", strcmp(leader, cName));
+            if (strcmp(leader, cName) != 0)
+            {
+                printf("%s is different from %s\n", cName, leader);
+                string temp = strcat(leader, commaSep);
+                printf("ext str: %s\n", temp);
+                leader = strcat(temp, cName);
+            }
+            else
+            {
+                printf("Self compare, skipping...\n");
+            }
+        }*/
+
+        printf("Leader is %s with %i votes\n", leader, top);
+        printf("\n");
     }    
     return;
 }
