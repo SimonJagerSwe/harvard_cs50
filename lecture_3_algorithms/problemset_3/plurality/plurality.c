@@ -89,16 +89,32 @@ void print_winner(void)
     
 
     // Iterate over all candidates
-    for (int i = 1; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
-        string cName = candidates[i].name;
-        int cVotes = candidates[i].votes;
+        string nameA = candidates[i].name;
+        int votesA = candidates[i].votes;
 
-        printf("Candidate for comparing: %s | Candidate votes: %i\n", cName, cVotes);
-        for (int j = i + 1; j < candidate_count; j++)
+        printf("Candidate for comparing: %s | Candidate votes: %i\n", nameA, votesA);
+        printf("Comparing %s to %s...\n", leader, nameA);
+        if (votesA < top)
         {
-            printf("\n");
+            printf("%s has fewer votes than %s\n", nameA, leader);
         }
+
+        else if (votesA > top)
+        {
+            printf("%s has more votes than %s\n", nameA, leader);
+            leader = nameA;
+            top = votesA;
+            printf("New leader: %s | New top votes: %i\n", leader, top);
+        }
+
+        else
+        {
+            printf("Draw, solution pending...\n");
+        }
+
+        
         /*if (cVotes < top)
         {
             printf("%s has fewer votes than %s\n", cName, leader);
@@ -126,8 +142,8 @@ void print_winner(void)
             }
         }*/
 
-        printf("Leader is %s with %i votes\n", leader, top);
-        printf("\n");
+        // printf("Leader is %s with %i votes\n", leader, top);
+        // printf("\n");
     }    
     return;
 }
