@@ -1,5 +1,7 @@
+// ########## Problemset 3 - Runoff ########## //
 #include <cs50.h>
 #include <stdio.h>
+#include <string.h>
 
 // Max voters and candidates
 #define MAX_VOTERS 100
@@ -126,7 +128,14 @@ int main(int argc, string argv[])
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
 {
-    // TODO
+    for (int i = 0; i <candidate_count; i++)
+    {
+        if (strcmp(name, candidates[i].name) == 0)
+        {
+            printf("Voter %i votes for %s\n", i, name);
+            return true;
+        }
+    }
     return false;
 }
 
