@@ -111,39 +111,20 @@ void print_winner(void)
 
         else
         {
-            printf("Draw, solution pending...\n");
-        }
-
-        
-        /*if (cVotes < top)
-        {
-            printf("%s has fewer votes than %s\n", cName, leader);
-        }
-        else if (cVotes > top)
-        {
-            leader = cName;
-            top = cVotes;
-            printf("New election leader: %s | leading number of votes: %i\n", leader, top);
-        }
-        else
-        {
-            printf("%s has same number of votes as leader\n", cName);
-            printf("Comp result: %i\n", strcmp(leader, cName));
-            if (strcmp(leader, cName) != 0)
+            printf("Draw...\n");
+            if (strcmp(nameA, leader) != 0)
             {
-                printf("%s is different from %s\n", cName, leader);
-                string temp = strcat(leader, commaSep);
-                printf("ext str: %s\n", temp);
-                leader = strcat(temp, cName);
+                printf("Different names found!\n");
+                printf("Previous leader: %s | Second candidate: %s\n", leader, nameA);
+                
             }
             else
             {
-                printf("Self compare, skipping...\n");
+                printf("Name already present\n");
             }
-        }*/
-
-        // printf("Leader is %s with %i votes\n", leader, top);
-        // printf("\n");
-    }    
+        }        
+        printf("\n");
+    }
+    printf("Leader: %s | Votes: %i\n",leader, top);
     return;
 }
