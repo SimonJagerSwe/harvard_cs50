@@ -82,49 +82,24 @@ bool vote(string name)
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-    // Initialise variables used to temporarily store highest number of votes and leading candidate name
-    int top = candidates[0].votes;
-    string leader = candidates[0].name;
-    string commaSep = ", ";
-    
+    // Initialise variable to store highest number of votes
+    int maxVotes = 0;
 
-    // Iterate over all candidates
+    // Iterate over candidates list to find largest number of votes and store that number in maxVotes variable
     for (int i = 0; i < candidate_count; i++)
     {
-        string nameA = candidates[i].name;
-        int votesA = candidates[i].votes;
-
-        printf("Candidate for comparing: %s | Candidate votes: %i\n", nameA, votesA);
-        printf("Comparing %s to %s...\n", leader, nameA);
-        if (votesA < top)
+        if (candidates[i].votes > maxVotes)
         {
-            printf("%s has fewer votes than %s\n", nameA, leader);
+            maxVotes = candidates[i].votes;
         }
-
-        else if (votesA > top)
-        {
-            printf("%s has more votes than %s\n", nameA, leader);
-            leader = nameA;
-            top = votesA;
-            printf("New leader: %s | New top votes: %i\n", leader, top);
-        }
-
-        else
-        {
-            printf("Draw...\n");
-            if (strcmp(nameA, leader) != 0)
-            {
-                printf("Different names found!\n");
-                printf("Previous leader: %s | Second candidate: %s\n", leader, nameA);
-                
-            }
-            else
-            {
-                printf("Name already present\n");
-            }
-        }        
-        printf("\n");
     }
-    printf("Leader: %s | Votes: %i\n",leader, top);
-    return;
+
+    // Iterate over candidates list to find candidates with a vote count matching maxVotes and print their name(s)
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes == maxVotes)
+        {
+            printf("%s\n", candidates[i].name);
+        }
+    }
 }
