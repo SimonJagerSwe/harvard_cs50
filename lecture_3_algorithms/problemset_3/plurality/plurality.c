@@ -83,7 +83,12 @@ void print_winner(void)
     string leader;
     for (int i = 0; i < candidate_count - 1; i++)
     {
-        printf("Candidate: %s | Compare: %s\n", candidates[i].name, candidates[i + 1].name);
+        printf("Candidate for comparing: %s | Candidate votes: %i\n", candidates[i].name, candidates[i].votes);
+        // printf("Candidate: %s | Compare: %s\n", candidates[i].name, candidates[i + 1].name);
+        for (int j = i + 1; j < candidate_count; j++)
+        {
+            printf("Opponent: %s | Opponent votes: %i\n", candidates[j].name, candidates[j].votes);
+        }
         /*printf("Counting votes for %s | Votes: %i\n\n", candidates[i].name, candidates[i].votes); // printf("Candidate: %s | Votes: %i | Max votes: %i | Current leader: %s\n", candidates[i].name, candidates[i].votes, max, leader);
         if (candidates[i].votes > candidates[i + 1].votes)
         {
