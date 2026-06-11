@@ -132,11 +132,12 @@ bool vote(int voter, int rank, string name)
     {
         if (strcmp(name, candidates[i].name) == 0)
         {
-            printf("%s present in candidates\n", name);
-            candidates[i].votes ++;
+            printf("%s is a valid option\n", candidates[i].name);
             return true;
         }
     }
+    // printf("%s\n", name);
+    
     return false;
 }
 
@@ -145,7 +146,7 @@ void tabulate(void)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        printf("%s\n", candidates[i].name);
+        // printf("%s\n", candidates[i].name);
     }
     return;
 }
