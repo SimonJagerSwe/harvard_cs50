@@ -133,11 +133,11 @@ bool vote(int voter, int rank, string name)
         if (strcmp(name, candidates[i].name) == 0)
         {
             printf("%s is a valid option\n", candidates[i].name);
+            preferences[voter][rank] = i;
+            printf("Test result: %d\n", preferences[voter][rank]);
             return true;
         }
-    }
-    // printf("%s\n", name);
-    
+    }    
     return false;
 }
 
