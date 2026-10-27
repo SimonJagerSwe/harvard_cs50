@@ -42,7 +42,22 @@ int main(void)
 
 
 // Example 5
+/*
+#include <cs50.h>
 int main(void)
 {
-    
+    string s = "HI!";       // Cheat function from cs50.h, to be replaced with char * s
+    printf("%p\n", s);
+    printf("%p\n", &s[0]);
+    printf("%p\n", &s[1]);
+    printf("%p\n", &s[2]);
+    printf("%p\n", &s[3]);
+}*/
+
+
+// Example 6
+int main(void)
+{
+    char * s = "HI!";
+    printf("");
 }
