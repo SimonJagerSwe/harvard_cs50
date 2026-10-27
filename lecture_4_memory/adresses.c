@@ -32,9 +32,17 @@ int main(void)
 
 
 // Example 4
+/*
 #include <cs50.h>
 int main(void)
 {
-    string s = "HI!";
+    string s = "HI!";       // Cheat function from cs50.h
     printf("%s\n", s);
+}*/
+
+
+// Example 5
+int main(void)
+{
+    
 }
