@@ -57,6 +57,7 @@ int main(void)
 
 // Example 6
 // typedef char *string;       //  This renames char * "string" in cs50.h
+/*
 int main(void)
 {
     char * s = "HI!";
@@ -69,4 +70,60 @@ int main(void)
     printf("%c\n", *(s + 1));
     printf("%c\n", *(s + 2));
     printf("%c\n", *(s + 3));
+}*/
+
+
+// Example 7
+/*
+#include <cs50.h>
+int main(void)
+{
+    int i = 50;
+    int j = 50;
+
+    if (i == j)
+    {
+        printf("Same\n");
+    }
+    else
+    {
+        printf("Different\n");
+    }
+}*/
+
+
+// Example 8
+/*
+#include <cs50.h>
+int main(void)
+{
+    string s = get_string("s: ");
+    string t = get_string("t: ");
+
+    if (s == t)
+    {
+        printf("Same\n");
+    }
+    else
+    {
+        printf("Different\n");
+    }
+}*/
+
+
+// Example 9
+#include <cs50.h>
+#include <ctype.h>
+#include <string.h>
+int main(void)
+{
+    char *s = get_string("s: ");
+
+    char *t = s;
+
+    t[0] = toupper(t[0]);
+
+    printf("s: %s\n", s);
+    printf("t: %s\n", t);
+
 }
