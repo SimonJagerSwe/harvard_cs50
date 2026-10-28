@@ -25,11 +25,22 @@ int main(void)
 
 // Example 2
 char *s = get_string("s: ");
+if (s == NULL)
+{
+    return 1;
+}
 char *t = get_string("t: ");
+if (t == NULL)
+{
+    return 1;
+}
 
 strcpy(t, s);
+if (strlen(s) > 0)
+{
+    t[0] = toupper(t[0]);
+}
 
-t[0] = toupper(t[0]);
 printf("s: %s\n", s);
 printf("t: %s\n", t);
 }
