@@ -3,6 +3,10 @@
 
 int main(void)
 {
-    int n = get_int("n: ");
-    printf("n: %i\n", n);
+    // Example 1
+    // int n = get_int("n: ");
+    // printf("n: %i\n", n);
+    int n;
+    printf("n: ");
+    scanf("%i", &n);
 }
