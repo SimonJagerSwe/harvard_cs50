@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -15,10 +16,10 @@ int main(void)
     int *x;
     int *y;
 
-    x = malloc(sizeof(int));
+    x = malloc(sizeof(int));    // Setting up a pointee to allow for dereferencing
 
     *x = 42;
-    *y = 13;
+    *y = 13;        // Dereferencing a pointer without setting up a pointee will cause a segmentation fault
 
     y = x;
 
