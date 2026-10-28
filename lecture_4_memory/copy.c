@@ -6,6 +6,8 @@
 
 int main(void)
 {
+// Example 1
+/*
     char *s = get_string("s: ");
 
     char *t = malloc(strlen(s) + 1);
@@ -18,4 +20,16 @@ int main(void)
 
     printf("s: %s\n", s);
     printf("t: %s\n", t);
+*/
+
+
+// Example 2
+char *s = get_string("s: ");
+char *t = get_string("t: ");
+
+strcpy(t, s);
+
+t[0] = toupper(t[0]);
+printf("s: %s\n", s);
+printf("t: %s\n", t);
 }
