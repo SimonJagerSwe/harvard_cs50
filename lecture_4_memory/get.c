@@ -1,5 +1,6 @@
 // #include <cs50.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -16,7 +17,8 @@ int main(void)
 
 
     // Example 3
-    char *s;
+    // char *s;
+    char s[10000];          // requires specific allowance of memory
     printf("s: ");
     scanf("%s", s);
     printf("s: %s\n", s);
