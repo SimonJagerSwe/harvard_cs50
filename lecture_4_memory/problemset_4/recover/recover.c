@@ -16,7 +16,16 @@ int main(int argc, char *argv[])
     char *infile = argv[1];
     printf("Infile:\n%s\n", infile);
 
+    // Create file to work on
+    FILE *input = fopen(infile, "r");
+    if (input == NULL)
+    {
+        printf("Could not open %s.\n", infile);
+        return 4;
+    }
+
     // While there's data to read
+    
 
         // Create JPEGs from data
 }
