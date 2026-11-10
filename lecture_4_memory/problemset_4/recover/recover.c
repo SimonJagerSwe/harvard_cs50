@@ -25,19 +25,21 @@ int main(int argc, char *argv[])
     }
 
     // Read file
-    char *bufferBlock[512];
-    char buffer = 0;
+    unsigned char bufferBlock[512];
+    size_t bytesRead;
     int counter = 0;
     int slackSpace = 0;
     char *breakChar = "\0";
 
-    
+    printf("Bytes in file: %lu\n", sizeof(input));
+
     // Fill 512 B block
-    while (fread(&buffer, sizeof(bufferBlock), 1, input))
+    while ((bytesRead = fread(bufferBlock, 1, sizeof(bufferBlock), input)) > 0)
     {
-        printf("Byte #%i: %d\n", counter + 1, buffer);
         counter++;
     }
+    printf("Blocks read: %d\n", counter);
+
 
     // While there's data to read
     // Identify jpeg signature
