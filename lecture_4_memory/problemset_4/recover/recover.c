@@ -30,15 +30,35 @@ int main(int argc, char *argv[])
     int counter = 0;
     int slackSpace = 0;
     char *breakChar = "\0";
-
-    printf("Bytes in file: %lu\n", sizeof(input));
+    size_t byte;
+    char *currentByte;
+    int block = 0;
 
     // Fill 512 B block
-    while ((bytesRead = fread(bufferBlock, 1, sizeof(bufferBlock), input)) > 0)
+    /*while ((bytesRead = fread(bufferBlock, 1, sizeof(bufferBlock), input)) > 0)
     {
         counter++;
     }
     printf("Blocks read: %d\n", counter);
+
+    while ((bytesRead = fread(bufferBlock, 1, sizeof(bufferBlock), input)) > 0)
+    {
+        for (size_t i = 0; i < bytesRead; i++)
+        {
+            printf("Byte: %d\n", bufferBlock[i]);
+        }
+    }*/
+
+    for (; (bytesRead = fread(bufferBlock, 1, sizeof bufferBlock, input)) > 0; block++)
+    {
+        printf("Block %d has %zu bytes\n", block, bytesRead);
+
+        for (size_t i = 0; i < bytesRead; i++)
+        {
+            printf("0x%02x ", bufferBlock[i]);
+        }
+        printf("\n");
+    }
 
 
     // While there's data to read
@@ -46,10 +66,10 @@ int main(int argc, char *argv[])
     char *byte4[16] = {"0xe0", "0xe1", "0xe2", "0xe3",
     "0xe4", "0xe5", "0xe6", "0xe7", "0xe8", "0xe9",
     "0xea", "0xeb", "0xec", "0xed", "0xee", "0xef"};
-    for (int i = 0; i < 16; i++)
-    {
-        printf("Byte: %s\n", byte4[i]);
-    }
+    // for (int i = 0; i < 16; i++)
+    // {
+    //     printf("Byte: %s\n", byte4[i]);
+    // }
     char *signature[3] = {"0xff", "0xd8", "0xff"};
     for (int i = 0; i < 3; i++)
     {
