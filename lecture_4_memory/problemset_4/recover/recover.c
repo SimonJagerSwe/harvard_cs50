@@ -1,6 +1,14 @@
-#include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+int isJpegStart(const unsigned char block[], size_t bytesRead)
+{
+    return bytesRead >= 4 &&
+    block[0] == 0xff &&
+    block[1] == 0xd8 &&
+    block[2] == 0xff &&
+    (block[3] & 0x0f) == 0xe0;
+}
 
 int main(int argc, char *argv[])
 {
@@ -27,29 +35,10 @@ int main(int argc, char *argv[])
     // Read file
     unsigned char bufferBlock[512];
     size_t bytesRead;
-    int counter = 0;
-    int slackSpace = 0;
-    char *breakChar = "\0";
-    size_t byte;
-    char *currentByte;
     int block = 0;
 
     // Fill 512 B block
-    /*while ((bytesRead = fread(bufferBlock, 1, sizeof(bufferBlock), input)) > 0)
-    {
-        counter++;
-    }
-    printf("Blocks read: %d\n", counter);
-
-    while ((bytesRead = fread(bufferBlock, 1, sizeof(bufferBlock), input)) > 0)
-    {
-        for (size_t i = 0; i < bytesRead; i++)
-        {
-            printf("Byte: %d\n", bufferBlock[i]);
-        }
-    }*/
-
-    for (; (bytesRead = fread(bufferBlock, 1, sizeof bufferBlock, input)) > 0; block++)
+    /*for (; (bytesRead = fread(bufferBlock, 1, sizeof bufferBlock, input)) > 0; block++)
     {
         printf("Block %d has %zu bytes\n", block, bytesRead);
 
@@ -57,8 +46,27 @@ int main(int argc, char *argv[])
         {
             printf("0x%02x ", bufferBlock[i]);
         }
-        printf("\n");
+        if (isJpegStart(bufferBlock, bytesRead))
+        {
+            printf("Jpeg signature at block %d: %02X %02X %02X %02X\n",
+            block,
+            bufferBlock[0],
+            bufferBlock[1],
+            bufferBlock[2],
+            bufferBlock[3]);
+            printf("\n");
+        }
     }
+
+
+
+    // Check for sequential 0x00 bits
+    for (int i = 0; i < sizeof bufferBlock; i++)
+    {
+        if (bufferBlock[i] == "0x00" && bufferBlock[i - 1] == "0x00")
+        printf("Slackspace detected, moving on to next block");
+        break;
+    }*/
 
 
     // While there's data to read
