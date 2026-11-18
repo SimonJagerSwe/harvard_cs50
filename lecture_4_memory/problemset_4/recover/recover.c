@@ -74,5 +74,9 @@ int main(int argc, char *argv[])
         block++;
         printf("\n");
     }
+    if (output != NULL)
+    {
+        fclose(output);
+    }
     fclose(input);
 }
